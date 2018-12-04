@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +11,8 @@ import { LandingAreaComponent } from './landing-area/landing-area.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginModalComponent } from './login-modal/login-modal.component';
+import { MaterialItensModule } from './material-itens/material-components.module';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +26,9 @@ import { LoginModalComponent } from './login-modal/login-modal.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialItensModule
   ],
   providers: [],
   bootstrap: [AppComponent]
