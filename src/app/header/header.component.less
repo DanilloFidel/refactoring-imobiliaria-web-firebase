@@ -1,0 +1,96 @@
+@import '../../styles.less';
+
+.header{
+  background-color: @primary-color;
+  box-shadow: @shadow;
+  display: flex;
+  height: 80px;
+  @media @max576{
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    box-shadow: none;
+    height: 60px;
+  }
+  &__logo{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    @media @max576{
+      width: 40%;
+    }
+    &-img{
+      margin-left: 10%;
+      width: 50%;
+      @media @max576{
+        width: 70%;
+      }
+      @media @middle{
+        width: 80%!important;
+      }
+    }
+  }
+  &__links{
+    margin-right: 10%;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    font-size: 120%;
+    @media @max576{
+      display: none;
+    }
+    &-item{
+      margin: 0 5%;
+    }
+  }
+  &__login--off{
+    width: 25%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 1.5em;
+    font-size: 110%;
+    @media @max576{
+      width: 0;
+      padding: 0
+    }
+  }
+  &__login--on{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @media @max576{
+      display: none;
+    }
+    .header__login-name{
+      text-transform: capitalize;
+      color: black;
+      font-weight: 600;
+      margin-top: 8;
+      height: 8px;
+    }
+    .header__login-link{
+      font-weight: 600;
+    }
+    .header__logout{
+      color: #ABD406;
+      font-weight: 600
+    }
+  }
+}
+
+@media @max576{
+  .slim-menu{
+    height: 40px;
+    background-color: @primary-color;
+    display: flex !important;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: @shadow-mobile
+  }
+}
+
+
+
+
