@@ -10,8 +10,13 @@ import { HousesAreaComponent } from './houses-area/houses-area.component';
 import { LandingAreaComponent } from './landing-area/landing-area.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { LoginModalComponent } from './login-modal/login-modal.component';
-import { MaterialItensModule } from './material-itens/material-components.module';
+import { MaterialItensModule } from './_material-itens/material-components.module';
+
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingService } from './_services/loading.service';
+import { AutenticationAreaComponent } from './autentication-area/autentication-area.component';
+import { RegisterUserComponent } from './autentication-area/register-user/register-user.component';
+import { LoginUserComponent } from './autentication-area/login-user/login-user.component';
 
 
 @NgModule({
@@ -22,15 +27,18 @@ import { MaterialItensModule } from './material-itens/material-components.module
     LandingAreaComponent,
     FooterComponent,
     HeaderComponent,
-    LoginModalComponent
+    AutenticationAreaComponent,
+    RegisterUserComponent,
+    LoginUserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialItensModule
+    MaterialItensModule,
+    NgxSpinnerModule
   ],
-  providers: [],
+  providers: [ LoadingService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

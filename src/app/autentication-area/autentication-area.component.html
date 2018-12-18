@@ -1,0 +1,10 @@
+<div class="wrapper">
+    <div *ngIf="showRegisterFormPanel; else loginPanel">
+      <app-register-user (showFormPanel)="showFormPanel($event)"></app-register-user>
+    </div>
+    <ng-template #loginPanel>
+      <app-login-user (showFormPanel)="showFormPanel($event)"></app-login-user>
+    </ng-template>
+</div>
+
+
