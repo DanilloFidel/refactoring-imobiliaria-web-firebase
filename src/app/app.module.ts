@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
 
 
 import { AppComponent } from './app.component';
@@ -17,6 +21,10 @@ import { LoadingService } from './_services/loading.service';
 import { AutenticationAreaComponent } from './autentication-area/autentication-area.component';
 import { RegisterUserComponent } from './autentication-area/register-user/register-user.component';
 import { LoginUserComponent } from './autentication-area/login-user/login-user.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpErrorInterceptor } from './_interceptor/http-error.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -35,10 +43,18 @@ import { LoginUserComponent } from './autentication-area/login-user/login-user.c
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    FormsModule,
     MaterialItensModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ],
-  providers: [ LoadingService ],
+  providers: [
+    LoadingService,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

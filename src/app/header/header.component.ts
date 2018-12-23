@@ -3,6 +3,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { LoadingService } from '../_services/loading.service';
 
 
+
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,11 +12,14 @@ import { LoadingService } from '../_services/loading.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public dialog: MatDialog,
-    private loader: LoadingService) { }
+  constructor(
+    public dialog: MatDialog,
+    private loader: LoadingService
+    ) { }
 
   ngOnInit() {
   }
+
 
 
 }

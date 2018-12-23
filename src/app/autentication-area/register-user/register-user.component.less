@@ -1,12 +1,21 @@
 @import '../../../styles.less';
 
 .panel{
-  margin: 5% 25%;
+  margin: 5% 35%;
   display: flex;
   justify-content: center;
   background-color: #F8F8F8;
   border-radius: 6px;
   box-shadow: @shadow;
+  @media @smallDevices{
+    margin: 2% 5%;
+  }
+  @media @mediumDevices{
+    margin: 5% 10%;
+  }
+  @media @largeDevices{
+    margin: 5% 20%;
+  }
   &-form{
     display: flex;
     flex-direction: column;

@@ -5,7 +5,7 @@
   box-shadow: @shadow;
   display: flex;
   height: 80px;
-  @media @max576{
+  @media @smallDevices{
     z-index: 999;
     display: flex;
     justify-content: center;
@@ -16,16 +16,16 @@
     width: 30%;
     display: flex;
     align-items: center;
-    @media @max576{
+    @media @smallDevices{
       width: 40%;
     }
     &-img{
       margin-left: 10%;
       width: 50%;
-      @media @max576{
+      @media@smallDevices{
         width: 70%;
       }
-      @media @middle{
+      @media @mediumDevices{
         width: 80%!important;
       }
     }
@@ -36,7 +36,7 @@
     display: flex;
     align-items: center;
     font-size: 120%;
-    @media @max576{
+    @media @smallDevices{
       display: none;
     }
     &-item{
@@ -46,6 +46,7 @@
       text-decoration: none;
       outline: none;
       cursor: pointer;
+      color: black;
     }
   }
   &__login--off{
@@ -56,7 +57,7 @@
     padding-right: 1.5em;
     font-size: 110%;
     outline: none;
-    @media @max576{
+    @media @smallDevices{
       width: 0;
       padding: 0
     }
@@ -67,7 +68,7 @@
     flex-direction: column;
     justify-content: center;
     outline: none;
-    @media @max576{
+    @media @smallDevices{
       display: none;
     }
     .header__login-name{
@@ -87,7 +88,7 @@
   }
 }
 
-@media @max576{
+@media @smallDevices{
   .slim-menu{
     height: 40px;
     background-color: @primary-color;
