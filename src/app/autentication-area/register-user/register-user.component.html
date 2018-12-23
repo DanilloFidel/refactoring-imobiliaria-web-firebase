@@ -20,7 +20,7 @@
     </mat-form-field>
     <div class="btn-wrapper">
       <button mat-raised-button routerLink="" type="button">Voltar</button>
-      <button mat-raised-button type="submit" [disabled]="true">Cadastrar</button>
+      <button mat-raised-button type="submit" [disabled]="!formulario.valid">Cadastrar</button>
     </div>
   </form>
 </div>

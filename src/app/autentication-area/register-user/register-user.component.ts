@@ -17,6 +17,7 @@ export class RegisterUserComponent implements OnInit {
   @Output() public showFormPanel: EventEmitter<string> = new EventEmitter<string>()
   public formPanelTransformState: string = 'criado';
   public passwordHide: boolean = true;
+  public email = false;
   public formulario: FormGroup = new FormGroup({
     nome: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
     email: new FormControl(null, [Validators.required, Validators.pattern(REGEX.email)]),
