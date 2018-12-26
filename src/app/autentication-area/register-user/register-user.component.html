@@ -2,21 +2,22 @@
   <form class="panel-form" [formGroup]="formulario" (ngSubmit)="setNewUserWithService()">
     <mat-form-field class="panel-form_input">
       <input matInput placeholder="Nome completo" formControlName="nome">
-      <mat-error *ngIf="email">{{getErrorMessage()}}</mat-error>
+      <mat-error *ngIf="errors.nome">{{ errors.nome }}</mat-error>
     </mat-form-field>
     <mat-form-field class="panel-form_input">
       <input matInput placeholder="Email" formControlName="email">
-      <mat-error *ngIf="email">{{getErrorMessage()}}</mat-error>
+      <mat-error *ngIf="errors.email">{{ errors.email }}</mat-error>
     </mat-form-field>
+    <span *ngIf="errors.email">{{ errors.email }}</span>
     <mat-form-field class="panel-form_input" hintLabel="*Utilize letras e numeros">
       <input matInput placeholder="Senha" [type]="passwordHide ? 'password' : 'text'" formControlName="senha">
       <mat-icon matSuffix (click)="passwordHide = !passwordHide">{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      <mat-error *ngIf="email">{{getErrorMessage()}}</mat-error>
+      <mat-error *ngIf="errors.senha">{{ errors.senha }}</mat-error>
     </mat-form-field>
     <mat-form-field class="panel-form_input">
       <input matInput placeholder="Confirme sua senha" [type]="passwordHide ? 'password' : 'text'" formControlName="confirmarSenha">
       <mat-icon matSuffix (click)="passwordHide = !passwordHide">{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      <mat-error *ngIf="email">{{getErrorMessage()}}</mat-error>
+      <mat-error *ngIf="!formulario.get('confirmarSenha').valid && formulario.get('confirmarSenha').touched">As senhas não iguais.</mat-error>
     </mat-form-field>
     <div class="btn-wrapper">
       <button mat-raised-button routerLink="" type="button">Voltar</button>

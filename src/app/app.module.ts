@@ -22,9 +22,9 @@ import { AutenticationAreaComponent } from './autentication-area/autentication-a
 import { RegisterUserComponent } from './autentication-area/register-user/register-user.component';
 import { LoginUserComponent } from './autentication-area/login-user/login-user.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpErrorInterceptor } from './_interceptor/http-error.interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+
+
 
 
 @NgModule({
@@ -45,7 +45,6 @@ import { environment } from 'src/environments/environment';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    HttpErrorInterceptor,
     AngularFireAuthModule,
     AngularFirestoreModule,
     FormsModule,
@@ -53,8 +52,7 @@ import { environment } from 'src/environments/environment';
     NgxSpinnerModule,
   ],
   providers: [
-    LoadingService,
-    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
+    LoadingService
    ],
   bootstrap: [AppComponent]
 })
