@@ -6,16 +6,21 @@ export const REGEX = {
 }
 
 export const formErrorMenssage = [
-  new ErrorMessage('', 'auth/network-request-failed', 'Falha de conexão, tente novamente!'),
   new ErrorMessage('nome', 'required', 'Precisamos do seu nome.'),
   new ErrorMessage('nome', 'minlength', 'Informe seu nome completo.'),
   new ErrorMessage('nome', 'maxlength', 'Limite máximo de 30 caracteres.'),
   new ErrorMessage('email', 'required', 'Precisamos do seu endereço de email.'),
   new ErrorMessage('email', 'pattern', 'Esse não é um endereço de email válido!'),
-  new ErrorMessage('email', 'email-already-in-use', 'Este email já está em uso!'),
-  new ErrorMessage('senha', 'required', 'Precisamos que voçê crie uma senha.'),
+  new ErrorMessage('senha', 'required', 'Insira uma senha.'),
   new ErrorMessage('senha', 'pattern', 'Sua senha deve conter no mínimo 5 letras e 1 número !')
 ];
+
+export const firebaseErrorMenssage = [
+  new ErrorMessage('', 'auth/network-request-failed', 'Falha de conexão, tente novamente!'),
+  new ErrorMessage('', 'auth/invalid-email', 'Digite um email válido'),
+  new ErrorMessage('', 'auth/wrong-password', 'Usuário ou senha inválida'),
+  new ErrorMessage('', 'auth/user-not-found', 'Usuário ou senha inválida'),
+]
 
 
 

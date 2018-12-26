@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { formErrorMenssage } from '../_utils/constants';
+import { formErrorMenssage, firebaseErrorMenssage } from '../_utils/constants';
 import { SnackBarService } from './snack-bar.service';
 
 @Injectable({
@@ -27,7 +27,7 @@ export class ErrorService {
 
   public checkErrorMsg(errorMsg: string): any{
     this.errors = {}
-    for(const error of formErrorMenssage){
+    for(const error of firebaseErrorMenssage){
       if(errorMsg.includes(error.forValidator)){
         this.snackBarService.openSnackBar(error.text, 'Falha');
       }

@@ -3,10 +3,10 @@ import { NgModule } from "@angular/core";
 import { UserAreaComponent } from "./user-area.component";
 
 const routes: Routes = [
-  { path: '', component: UserAreaComponent, //canActivate: [ AutenticationService ],
-    children: [
-      //{ path: 'favoritos', component: FavoritesComponent },
-  ]},
+  { path: '', component: UserAreaComponent,
+  children: [
+
+]},
 ];
 
 @NgModule({

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
-import { LoadingService } from '../_services/loading.service';
-
-
 
 
 @Component({
@@ -13,8 +10,7 @@ import { LoadingService } from '../_services/loading.service';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    public dialog: MatDialog,
-    private loader: LoadingService
+    public dialog: MatDialog
     ) { }
 
   ngOnInit() {

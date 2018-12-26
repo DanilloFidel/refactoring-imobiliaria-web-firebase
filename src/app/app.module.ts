@@ -17,7 +17,6 @@ import { HeaderComponent } from './header/header.component';
 import { MaterialItensModule } from './_material-itens/material-components.module';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { LoadingService } from './_services/loading.service';
 import { AutenticationAreaComponent } from './autentication-area/autentication-area.component';
 import { RegisterUserComponent } from './autentication-area/register-user/register-user.component';
 import { LoginUserComponent } from './autentication-area/login-user/login-user.component';
@@ -30,7 +29,6 @@ import { environment } from 'src/environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
-    UserAreaComponent,
     HousesAreaComponent,
     LandingAreaComponent,
     FooterComponent,
@@ -52,7 +50,7 @@ import { environment } from 'src/environments/environment';
     NgxSpinnerModule,
   ],
   providers: [
-    LoadingService
+
    ],
   bootstrap: [AppComponent]
 })

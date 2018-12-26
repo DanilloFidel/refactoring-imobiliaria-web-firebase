@@ -60,10 +60,8 @@ export class RegisterUserComponent implements OnInit {
   }
 
   public setNewUserWithService(): void{
-    this.authService.openLoadingOverlay();
     this.authService.registerNewUserInFirebase(this.getDataToCreateNewUser())
     .then(()=>{
-      this.authService.closeLoadingOverlay();
       this.formulario.reset();
       this.snackBarService.openSnackBar('Agora voçê pode acessar seu painel!','Cadastrado');
       this.changeToLoginUserPanel();
