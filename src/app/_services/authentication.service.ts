@@ -1,27 +1,39 @@
 import { Injectable } from '@angular/core';
 import { User } from '../_models/user.model';
-import * as firebase from 'firebase';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
-import { ErrorService } from './error.service';
+import { CanActivate, Router } from '@angular/router';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService {
+export class AuthenticationService implements CanActivate {
   private userCollectionRef: AngularFirestoreCollection<User>;
   private user$: Observable<User[]>;
 
   constructor(
     private spinner: NgxSpinnerService,
     private angularFireAuth: AngularFireAuth,
-    private angularFireDb: AngularFirestore
+    private angularFireDb: AngularFirestore,
+    private route: Router
   ) {
     this.userCollectionRef = this.angularFireDb.collection<User>('usuarios');
     this.user$ = this.userCollectionRef.valueChanges();
   }
+
+
+  public canActivate(){
+    if(!this.getUserToken()){
+      this.route.navigate(['/'])
+      return false
+    }
+      return true
+  }
+
 
   public registerNewUserInFirebase(newUser: User): Promise<any> {
     this.openLoadingOverlay();
@@ -68,6 +80,10 @@ export class AuthenticationService {
         sessionStorage.setItem('#', token)
       })
       .catch( error =>console.log(error))
+  }
+
+  private getUserToken(): string{
+    return sessionStorage.getItem('#');
   }
 
   private removePasswordFromUser(user: User): void {
