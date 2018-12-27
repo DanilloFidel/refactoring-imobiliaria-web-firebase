@@ -22,6 +22,7 @@ import { RegisterUserComponent } from './autentication-area/register-user/regist
 import { LoginUserComponent } from './autentication-area/login-user/login-user.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { ParallaxComponent } from './parallax/parallax.component';
 
 
 
@@ -35,7 +36,8 @@ import { environment } from 'src/environments/environment';
     HeaderComponent,
     AutenticationAreaComponent,
     RegisterUserComponent,
-    LoginUserComponent
+    LoginUserComponent,
+    ParallaxComponent
   ],
   imports: [
     BrowserModule,

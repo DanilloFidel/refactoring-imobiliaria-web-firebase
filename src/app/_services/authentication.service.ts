@@ -63,9 +63,10 @@ export class AuthenticationService implements CanActivate {
     this.openLoadingOverlay();
     return new Promise((resolve, reject) => {
       this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
-        .then(() => {
+        .then((resp) => {
           this.setUserToken();
           this.closeLoadingOverlay();
+          resolve(resp);
         })
         .catch((error) => {
           this.closeLoadingOverlay();

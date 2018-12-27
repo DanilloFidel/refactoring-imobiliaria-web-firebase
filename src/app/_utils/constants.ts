@@ -20,6 +20,8 @@ export const firebaseErrorMenssage = [
   new ErrorMessage('', 'auth/invalid-email', 'Digite um email válido'),
   new ErrorMessage('', 'auth/wrong-password', 'Usuário ou senha inválida'),
   new ErrorMessage('', 'auth/user-not-found', 'Usuário ou senha inválida'),
+  new ErrorMessage('', 'auth/email-already-in-use', 'Este email já esta em uso.'),
+
 ]
 
 

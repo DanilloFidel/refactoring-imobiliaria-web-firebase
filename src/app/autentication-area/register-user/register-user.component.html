@@ -11,7 +11,6 @@
     <span *ngIf="errors.email">{{ errors.email }}</span>
     <mat-form-field class="panel-form_input" hintLabel="*Utilize letras e numeros">
       <input matInput placeholder="Senha" [type]="passwordHide ? 'password' : 'text'" formControlName="senha">
-      <mat-icon matSuffix (click)="passwordHide = !passwordHide">{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
       <mat-error *ngIf="errors.senha">{{ errors.senha }}</mat-error>
     </mat-form-field>
     <mat-form-field class="panel-form_input">

@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-area.component.less']
 })
 export class LandingAreaComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit() {

@@ -3,6 +3,7 @@ import { BANNERENTER } from 'src/app/_animations/animation-banner';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
 import { ErrorService } from 'src/app/_services/error.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class LoginUserComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private route: Router
   ) { }
 
   ngOnInit() {
@@ -43,7 +45,8 @@ export class LoginUserComponent implements OnInit {
       this.formulario.value.email,
       this.formulario.value.senha
     ).then((resp)=>{
-      console.log(resp)
+      console.log(resp);
+      this.route.navigate(['/area-do-usuario']);
     })
     .catch((errorMsg) => {
       this.errorService.checkErrorMsg(errorMsg)

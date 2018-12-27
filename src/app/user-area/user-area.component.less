@@ -1,0 +1,26 @@
+@import '../../styles.less';
+
+.header{
+  background-color: @primary-color;
+  box-shadow: @shadow;
+  display: flex;
+  height: 80px;
+  &__logo{
+    width: 25%;
+    display: flex;
+    align-items: center;
+    @media @smallDevices{
+      width: 40%;
+    }
+    &-img{
+      margin-left: 10%;
+      width: 50%;
+      @media@smallDevices{
+        width: 70%;
+      }
+      @media @mediumDevices{
+        width: 80%!important;
+      }
+    }
+  }
+}
