@@ -1,17 +1,17 @@
 <div class="panel" [@animacao-banner]="formPanelTransformState">
-    <form class="panel-form" [formGroup]="formulario" (ngSubmit)="formSubmit()">
-      <mat-form-field class="panel-form_input">
-        <input matInput placeholder="Email" formControlName="email">
-        <mat-error *ngIf="formulario.controls['email'].touched">Insira um email</mat-error>
-      </mat-form-field>
-      <mat-form-field class="panel-form_input">
-        <input matInput placeholder="Senha" [type]="passwordHide ? 'password' : 'text'" formControlName="senha">
-        <mat-icon matSuffix (click)="passwordHide = !passwordHide">{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        <mat-error *ngIf="formulario.controls['senha'].touched">Insira sua senha</mat-error>
-      </mat-form-field>
-      <div class="btn-wrapper">
-        <button mat-raised-button (click)="changeToRegisterUserPanel()">Cadastre-se</button>
-        <button mat-raised-button type="submit">Login</button>
-      </div>
-    </form>
-  </div>
+  <form class="panel-form" [formGroup]="formulario" (ngSubmit)="formSubmit()">
+    <mat-form-field class="panel-form_input">
+      <input matInput placeholder="Email" formControlName="email">
+      <mat-error *ngIf="formulario.controls['email'].touched">Insira um email</mat-error>
+    </mat-form-field>
+    <mat-form-field class="panel-form_input">
+      <input matInput placeholder="Senha" [type]="passwordHide ? 'password' : 'text'" formControlName="senha">
+      <mat-icon matSuffix (click)="passwordHide = !passwordHide">{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="formulario.controls['senha'].touched">Insira sua senha</mat-error>
+    </mat-form-field>
+    <div class="btn-wrapper">
+      <button mat-raised-button (click)="changeToRegisterUserPanel()">Cadastre-se</button>
+      <button mat-raised-button type="submit">Login</button>
+    </div>
+  </form>
+</div>

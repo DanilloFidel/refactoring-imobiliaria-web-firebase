@@ -4,7 +4,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate } from '@angular/router';
+import { NavigationService } from './navigation.service';
 
 
 
@@ -13,22 +14,23 @@ import { CanActivate, Router } from '@angular/router';
 })
 export class AuthenticationService implements CanActivate {
   private userCollectionRef: AngularFirestoreCollection<User>;
-  private user$: Observable<User[]>;
+  private user: any
+  private actionCodeSettings: any;
+  private userEmail: string;
 
   constructor(
     private spinner: NgxSpinnerService,
     private angularFireAuth: AngularFireAuth,
     private angularFireDb: AngularFirestore,
-    private route: Router
+    private navigation: NavigationService
   ) {
     this.userCollectionRef = this.angularFireDb.collection<User>('usuarios');
-    this.user$ = this.userCollectionRef.valueChanges();
   }
 
 
   public canActivate(){
     if(!this.getUserToken()){
-      this.route.navigate(['/'])
+      this.navigation.navigateToRoute('')
       return false
     }
       return true
@@ -39,9 +41,10 @@ export class AuthenticationService implements CanActivate {
     this.openLoadingOverlay();
     return new Promise((resolve, reject) => {
       this.angularFireAuth.auth.createUserWithEmailAndPassword(newUser.email, newUser.senha)
-        .then(() => {
+        .then((resp) => {
           this.writeUserInDatabase(newUser).then(() => {
-            this.closeLoadingOverlay()
+            this.sendEmailVerification(resp.user);
+            this.closeLoadingOverlay();
             }
           )
           resolve();
@@ -54,8 +57,8 @@ export class AuthenticationService implements CanActivate {
   }
 
   private async writeUserInDatabase(userRegistred: User) {
-    this.removePasswordFromUser(userRegistred);
-    await this.angularFireDb.collection("usuarios").doc(`${btoa(userRegistred.email)}`)
+    this.removePasswordFromUser(userRegistred)
+    await this.userCollectionRef.doc(`${btoa(userRegistred.email)}`)
       .set(Object.assign({}, userRegistred));
   }
 
@@ -64,9 +67,17 @@ export class AuthenticationService implements CanActivate {
     return new Promise((resolve, reject) => {
       this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
         .then((resp) => {
-          this.setUserToken();
+          this.user = resp.user;
+          if(this.checkEmailIsVerified(resp.user)){
+            this.setUserToken();
+            resolve('email is verified');
+          }else{
+            this.sendEmailVerification()
+              .then(()=>{
+                reject();
+              })
+          }
           this.closeLoadingOverlay();
-          resolve(resp);
         })
         .catch((error) => {
           this.closeLoadingOverlay();
@@ -98,4 +109,23 @@ export class AuthenticationService implements CanActivate {
   public closeLoadingOverlay(): void {
     this.spinner.hide();
   }
+
+  public async sendEmailVerification(){
+    await this.user.sendEmailVerification(this.getActionCodeSettings());
+  }
+
+  private getActionCodeSettings(){
+    return this.actionCodeSettings = {
+      // URL you want to redirect back to. The domain (www.example.com) for this
+      // URL must be whitelisted in the Firebase Console.
+      url: 'http://localhost:4200/?email=' + this.user.email,
+      // This must be true.
+      handleCodeInApp: true
+    };
+  }
+
+  private checkEmailIsVerified(user: any): boolean{
+    return user.emailVerified
+  }
+
 }

@@ -3,7 +3,9 @@ import { BANNERENTER } from 'src/app/_animations/animation-banner';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
 import { ErrorService } from 'src/app/_services/error.service';
-import { Router } from '@angular/router';
+import { NavigationService } from 'src/app/_services/navigation.service';
+import { MatDialogRef, MatDialog } from '@angular/material';
+import { ModalComponent } from 'src/app/modal/modal.component';
 
 
 @Component({
@@ -17,12 +19,15 @@ export class LoginUserComponent implements OnInit {
   public formPanelTransformState: string = 'criado';
   public passwordHide: boolean = true;
   public formulario: FormGroup;
+  public fileNameDialogRef: MatDialogRef<ModalComponent>;
+
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
     private errorService: ErrorService,
-    private route: Router
+    private navigation: NavigationService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -45,11 +50,20 @@ export class LoginUserComponent implements OnInit {
       this.formulario.value.email,
       this.formulario.value.senha
     ).then((resp)=>{
-      console.log(resp);
-      this.route.navigate(['/area-do-usuario']);
+      this.redirectToLogin();
     })
     .catch((errorMsg) => {
+      !errorMsg && this.openModal();
       this.errorService.checkErrorMsg(errorMsg)
     })
   }
+
+  public redirectToLogin(): void{
+    this.navigation.navigateToRoute('./area-do-usuario');
+  }
+
+  public openModal(): void{
+    this.fileNameDialogRef = this.dialog.open(ModalComponent);
+  }
+
 }

@@ -9,7 +9,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { UserAreaComponent } from './user-area/user-area.component';
 import { HousesAreaComponent } from './houses-area/houses-area.component';
 import { LandingAreaComponent } from './landing-area/landing-area.component';
 import { FooterComponent } from './footer/footer.component';
@@ -23,6 +22,8 @@ import { LoginUserComponent } from './autentication-area/login-user/login-user.c
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ParallaxComponent } from './parallax/parallax.component';
+import { UserManagementComponent } from './user-management/user-management.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 
@@ -37,7 +38,9 @@ import { ParallaxComponent } from './parallax/parallax.component';
     AutenticationAreaComponent,
     RegisterUserComponent,
     LoginUserComponent,
-    ParallaxComponent
+    ParallaxComponent,
+    UserManagementComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +57,7 @@ import { ParallaxComponent } from './parallax/parallax.component';
   providers: [
 
    ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ModalComponent]
 })
 export class AppModule { }
