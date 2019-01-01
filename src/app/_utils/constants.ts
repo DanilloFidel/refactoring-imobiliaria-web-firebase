@@ -24,5 +24,9 @@ export const firebaseErrorMenssage = [
 
 ]
 
+export const prefixStorage = {
+  userTokenPrefix: '#tk'
+}
+
 
 

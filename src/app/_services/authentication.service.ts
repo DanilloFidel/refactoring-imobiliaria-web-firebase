@@ -3,9 +3,9 @@ import { User } from '../_models/user.model';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
 import { CanActivate } from '@angular/router';
 import { NavigationService } from './navigation.service';
+import { prefixStorage } from '../_utils/constants';
 
 
 
@@ -43,7 +43,7 @@ export class AuthenticationService implements CanActivate {
       this.angularFireAuth.auth.createUserWithEmailAndPassword(newUser.email, newUser.senha)
         .then((resp) => {
           this.writeUserInDatabase(newUser).then(() => {
-            this.sendEmailVerification(resp.user);
+            this.sendEmailVerification();
             this.closeLoadingOverlay();
             }
           )
@@ -70,10 +70,11 @@ export class AuthenticationService implements CanActivate {
           this.user = resp.user;
           if(this.checkEmailIsVerified(resp.user)){
             this.setUserToken();
-            resolve('email is verified');
+            resolve();
           }else{
             this.sendEmailVerification()
               .then(()=>{
+                this.logout();
                 reject();
               })
           }
@@ -89,13 +90,13 @@ export class AuthenticationService implements CanActivate {
   private setUserToken(){
     this.angularFireAuth.auth.currentUser.getIdToken()
       .then((token)=>{
-        sessionStorage.setItem('#', token)
+        sessionStorage.setItem(prefixStorage.userTokenPrefix, token)
       })
       .catch( error =>console.log(error))
   }
 
   private getUserToken(): string{
-    return sessionStorage.getItem('#');
+    return sessionStorage.getItem(prefixStorage.userTokenPrefix);
   }
 
   private removePasswordFromUser(user: User): void {
@@ -126,6 +127,11 @@ export class AuthenticationService implements CanActivate {
 
   private checkEmailIsVerified(user: any): boolean{
     return user.emailVerified
+  }
+
+  public logout(): void{
+    this.angularFireAuth.auth.signOut();
+    sessionStorage.removeItem(prefixStorage.userTokenPrefix);
   }
 
 }

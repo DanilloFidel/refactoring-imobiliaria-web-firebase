@@ -49,12 +49,12 @@ export class LoginUserComponent implements OnInit {
     this.authService.authenticateUser(
       this.formulario.value.email,
       this.formulario.value.senha
-    ).then((resp)=>{
+    ).then(()=>{
       this.redirectToLogin();
     })
     .catch((errorMsg) => {
       !errorMsg && this.openModal();
-      this.errorService.checkErrorMsg(errorMsg)
+      errorMsg && this.errorService.checkErrorMsg(errorMsg)
     })
   }
 
