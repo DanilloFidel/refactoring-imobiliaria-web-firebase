@@ -6,6 +6,8 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { CanActivate } from '@angular/router';
 import { NavigationService } from './navigation.service';
 import { prefixStorage } from '../_utils/constants';
+import { FirebaseAuth } from '@angular/fire';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 
 
@@ -30,12 +32,11 @@ export class AuthenticationService implements CanActivate {
 
   public canActivate(){
     if(!this.getUserToken()){
-      this.navigation.navigateToRoute('')
+      this.navigation.navigateToRoute('./area-de-autenticacao')
       return false
     }
       return true
   }
-
 
   public registerNewUserInFirebase(newUser: User): Promise<any> {
     this.openLoadingOverlay();
@@ -133,5 +134,6 @@ export class AuthenticationService implements CanActivate {
     this.angularFireAuth.auth.signOut();
     sessionStorage.removeItem(prefixStorage.userTokenPrefix);
   }
+
 
 }

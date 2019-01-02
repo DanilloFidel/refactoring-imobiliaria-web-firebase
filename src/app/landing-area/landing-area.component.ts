@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth, User } from 'firebase';
+import { User } from '../_models/user.model';
+
 
 @Component({
   selector: 'app-landing-area',
@@ -58,34 +59,22 @@ export class LandingAreaComponent implements OnInit {
 
   //this.fireAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()).catch(r=>console.log('resp:',r))
 
-  var actionCodeSettings = {
-    // URL you want to redirect back to. The domain (www.example.com) for this
-    // URL must be whitelisted in the Firebase Console.
-    url: 'http://localhost:4200/?email=' + this.fireAuth.auth.currentUser.email,
-    // This must be true.
-    handleCodeInApp: true
-  };
-
-  /**
-   * Initiate the password reset process for this user
-   * @param email email of the user
-   */
-
-    this.fireAuth.auth.currentUser.sendEmailVerification(actionCodeSettings)
 
 
-
-
-  .then((r=>console.log('sucesso',r))
+   this.fireAuth.auth.signInWithEmailAndPassword('danillopkt@gmail.com','1754712df')
+  .then((r=>{
+    //console.log('sucesso',r);
+    //localStorage.setItem('#u', JSON.stringify(r.user))
+  })
   ).catch(err=>console.log('erro',err))
 
+  //this.fireAuth.auth.
 
 
   }
 
   public logout(){
     this.fireAuth.auth.signOut().then(resp=>console.log(resp)).catch(resp=>console.log(resp))
-
   }
 
   public status(){

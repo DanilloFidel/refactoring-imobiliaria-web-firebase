@@ -13,16 +13,20 @@
     </div>
   </div>
 
-  <div class="header__login--off" routerLink="../area-de-autenticacao">
+  <div class="header__login--off" routerLink="../area-de-autenticacao" *ngIf="!loggedState; else userLogged">
     <i class="fas fa-2x fa-user-lock header__icon header__login--on"></i>
   </div>
+
+  <ng-template #userLogged>
+    <div class="header__login--off" routerLink="../area-do-usuario">
+      <i class="fas fa-2x fa-door-open header__icon header__login--on"></i>
+    </div>
+  </ng-template>
 
 </nav>
 
 <div class="slim-menu" style="display: none">
-    <a class="header__links-a" routerLink="/imoveis">Imóveis</a>
-    <a class="header__links-a" routerLink="../area-de-autenticacao">Área do cliente</a>
-    <a class="header__links-a" href="#">Fale Conosco</a>
+  <a class="header__links-a" routerLink="/imoveis">Imóveis</a>
+  <a class="header__links-a" routerLink="../area-do-usuario">Área do cliente</a>
+  <a class="header__links-a" href="#">Fale Conosco</a>
 </div>
-
-

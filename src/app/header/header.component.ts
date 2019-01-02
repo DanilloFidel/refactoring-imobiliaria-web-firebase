@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { AuthenticationService } from '../_services/authentication.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 
 @Component({
@@ -8,13 +9,23 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent implements OnInit {
+  public loggedState: any;
 
   constructor(
-    public dialog: MatDialog
+    private afs: AngularFireAuth
     ) { }
 
   ngOnInit() {
+    this.getLoggedState();
   }
+
+  public getLoggedState(): void{
+    this.afs.auth.onAuthStateChanged((data)=>{
+      this.loggedState = data;
+    })
+  }
+
+
 
 
 
