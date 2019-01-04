@@ -24,7 +24,6 @@ export class RegisterUserComponent implements OnInit {
   public email = false;
   public formulario: FormGroup;
   public errors: {[key: string]: string} = {};
-  public teste: boolean;
   constructor(
     private authService: AuthenticationService,
     private fb: FormBuilder,
@@ -55,7 +54,7 @@ export class RegisterUserComponent implements OnInit {
     })
   }
 
-  public changeToLoginUserPanel(): void{
+  public changeToLoginPanel(): void{
     this.showFormPanel.emit('login')
   }
 
@@ -63,7 +62,8 @@ export class RegisterUserComponent implements OnInit {
     this.authService.registerNewUserInFirebase(this.getDataToCreateNewUser())
     .then(()=>{
       this.formulario.reset();
-      this.changeToLoginUserPanel();
+      this.snackBarService.openSnackBar('Cadastro efetuado com sucesso!','Parabéns!');
+      this.changeToLoginPanel();
     })
     .catch((errorMsg)=>{
       this.errorService.checkErrorMsg(errorMsg);

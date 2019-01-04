@@ -1,0 +1,36 @@
+
+<div class="panel" [@animacao-banner]="formPanelTransformState">
+    <div class="titles">
+        <span class="titles-register">{{panelText.title}}</span>
+      </div>
+  <form class="panel-form" [formGroup]="formulario">
+    <mat-form-field class="panel-form_input" hintLabel="*Utilize letras e numeros">
+      <input
+        matInput
+        placeholder="Senha"
+        [type]="passwordHide ? 'password' : 'text'"
+        formControlName="senha"
+        >
+      <mat-error *ngIf="errors.senha">{{ errors.senha }}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="panel-form_input">
+      <input
+        matInput
+        placeholder="Confirme sua senha"
+        [type]="passwordHide ? 'password' : 'text'"
+        formControlName="confirmarSenha">
+      <mat-icon
+        matSuffix
+        (click)="passwordHide = !passwordHide">{{passwordHide ? 'visibility_off' : 'visibility'}}
+      </mat-icon>
+      <mat-error
+      *ngIf="!formulario.get('confirmarSenha').valid && formulario.get('confirmarSenha').touched">
+        As senhasnão iguais!
+      </mat-error>
+    </mat-form-field>
+    <div class="btn-wrapper">
+      <button mat-raised-button type="submit" class="btn-login" (click)="checkEmailLink()" [disabled]="!formulario.valid && !panelText.error" >{{panelText.btnMsg}}</button>
+      <button mat-raised-button routerLink="" type="button" class="btn-login">Voltar</button>
+    </div>
+  </form>
+</div>

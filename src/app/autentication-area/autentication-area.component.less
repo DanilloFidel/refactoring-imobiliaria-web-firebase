@@ -1,6 +1,23 @@
+@import '../../styles.less';
+
+
 .wrapper{
-  background-image: url('../../assets/home-background.jpg');
+  background-image: url('../../assets/parallax1.jpg');
   height: -webkit-fill-available;
   padding: 5% 35%;
   background-size: cover;
+  @media @smallDevices{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+    padding: 10% 5%;
+  }
+  @media @mediumDevices{
+    padding: 1%;
+    height: 100%;
+  }
+  @media @largeDevices{
+    padding: 1%;
+    height: 100%;
+  }
 }

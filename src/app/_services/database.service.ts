@@ -5,7 +5,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
   providedIn: 'root'
 })
 export class DatabaseService {
-
+/*
   constructor(
     private angularFireDb: AngularFirestore
   ) { }
@@ -21,3 +21,5 @@ firebase.database().ref(`usuarios/${btoa(email)}`)
   e.nome_usuario = snapshot.val().nome_completo;
 })
 })
+*/
+}

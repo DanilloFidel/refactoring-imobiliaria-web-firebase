@@ -21,7 +21,6 @@ export class LoginUserComponent implements OnInit {
   public formulario: FormGroup;
   public fileNameDialogRef: MatDialogRef<ModalComponent>;
 
-
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService,
@@ -36,6 +35,10 @@ export class LoginUserComponent implements OnInit {
 
   public changeToRegisterUserPanel(): void{
     this.showFormPanel.emit('register')
+  }
+
+  public changeToRecoveryPassword(): void{
+    this.showFormPanel.emit('recovery');
   }
 
   private createForm(){

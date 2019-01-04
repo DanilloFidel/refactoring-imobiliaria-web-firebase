@@ -1,10 +1,14 @@
 <div class="wrapper">
-  <div *ngIf="showRegisterFormPanel; else loginPanel">
-  <app-register-user (showFormPanel)="showFormPanel($event)"></app-register-user>
+  <div *ngIf="showLoginFormPanel">
+    <app-login-user (showFormPanel)="showFormPanel($event)"></app-login-user>
+  </div>
+  <div *ngIf="showRegisterFormPanel">
+    <app-register-user (showFormPanel)="showFormPanel($event)"></app-register-user>
+  </div>
+  <div *ngIf="showRecoveryFormPanel">
+    <app-recovery-password (showFormPanel)="showFormPanel($event)"></app-recovery-password>
+  </div>
+  <div *ngIf="showUserFormHelper">
+    <app-user-helper (showFormPanel)="showFormPanel($event)"></app-user-helper>
+  </div>
 </div>
-<ng-template #loginPanel>
-  <app-login-user (showFormPanel)="showFormPanel($event)"></app-login-user>
-</ng-template>
-</div>
-
-

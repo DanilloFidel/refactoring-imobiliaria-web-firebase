@@ -22,8 +22,9 @@ import { LoginUserComponent } from './autentication-area/login-user/login-user.c
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ParallaxComponent } from './parallax/parallax.component';
-import { UserManagementComponent } from './user-management/user-management.component';
 import { ModalComponent } from './modal/modal.component';
+import { RecoveryPasswordComponent } from './autentication-area/recovery-password/recovery-password.component';
+import { UserHelperComponent } from './autentication-area/user-helper/user-helper.component';
 
 
 
@@ -39,8 +40,9 @@ import { ModalComponent } from './modal/modal.component';
     RegisterUserComponent,
     LoginUserComponent,
     ParallaxComponent,
-    UserManagementComponent,
-    ModalComponent
+    ModalComponent,
+    RecoveryPasswordComponent,
+    UserHelperComponent
   ],
   imports: [
     BrowserModule,

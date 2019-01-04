@@ -17,15 +17,35 @@ export const formErrorMenssage = [
 
 export const firebaseErrorMenssage = [
   new ErrorMessage('', 'auth/network-request-failed', 'Falha de conexão, tente novamente!'),
+  new ErrorMessage('', 'auth/weak-password', 'Senha inválida!'),
   new ErrorMessage('', 'auth/invalid-email', 'Digite um email válido'),
-  new ErrorMessage('', 'auth/wrong-password', 'Usuário ou senha inválida'),
-  new ErrorMessage('', 'auth/user-not-found', 'Usuário ou senha inválida'),
+  new ErrorMessage('', 'auth/wrong-password', 'Email ou senha inválida'),
+  new ErrorMessage('', 'auth/user-not-found', 'Email não encontrado no sistema'),
   new ErrorMessage('', 'auth/email-already-in-use', 'Este email já esta em uso.'),
+  new ErrorMessage('', 'auth/expired-action-code', 'O link enviado já expirou!'),
 
 ]
 
 export const prefixStorage = {
   userTokenPrefix: '#tk'
+}
+
+export const errorTextObj = {
+  title: 'Ops, seu código expirou',
+  btnMsg: 'Reenviar código',
+  error: true
+}
+
+export const resetPwdFormTextObj = {
+  title: 'REDEFINIR SENHA',
+  btnMsg: 'Alterar',
+  error: false
+}
+
+export const queryParams = {
+  resendLink: {
+    linkenviado: true
+  }
 }
 
 
