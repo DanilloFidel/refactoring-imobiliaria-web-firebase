@@ -11,7 +11,6 @@
       <input matInput placeholder="Email" formControlName="email">
       <mat-error *ngIf="errors.email">{{ errors.email }}</mat-error>
     </mat-form-field>
-    <span *ngIf="errors.email">{{ errors.email }}</span>
     <mat-form-field class="panel-form_input" hintLabel="*Utilize letras e numeros">
       <input matInput placeholder="Senha" [type]="passwordHide ? 'password' : 'text'" formControlName="senha">
       <mat-error *ngIf="errors.senha">{{ errors.senha }}</mat-error>

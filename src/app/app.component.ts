@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -8,8 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
   title = 'imobiliaria-web';
+  items = ['First', 'Second', 'Third', 'Fourth'];
 
   public ngOnInit(): void{
   }
+
+  /*
+  onDrop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.items, event.previousIndex, event.currentIndex);
+  }
+  */
 
 }

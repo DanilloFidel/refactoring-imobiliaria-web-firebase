@@ -12,7 +12,8 @@ export const formErrorMenssage = [
   new ErrorMessage('email', 'required', 'Precisamos do seu endereço de email.'),
   new ErrorMessage('email', 'pattern', 'Esse não é um endereço de email válido!'),
   new ErrorMessage('senha', 'required', 'Insira uma senha.'),
-  new ErrorMessage('senha', 'pattern', 'Sua senha deve conter no mínimo 5 letras e 1 número !')
+  new ErrorMessage('senha', 'pattern', 'Use letras e números.'),
+  new ErrorMessage('senha', 'minlength', 'Use uma senha maior.')
 ];
 
 export const firebaseErrorMenssage = [

@@ -32,4 +32,8 @@ export class UserAreaComponent implements OnInit {
 
   }
 
+  public getState(outlet: any): string {
+    return outlet.activatedRouteData.state;
+  }
+
 }

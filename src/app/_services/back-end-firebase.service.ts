@@ -8,6 +8,8 @@ import { errorTextObj, resetPwdFormTextObj } from '../_utils/constants';
 import isEmpty from 'lodash/isEmpty';
 import { ErrorService } from './error.service';
 import { SnackBarService } from './snack-bar.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +30,8 @@ export class BackEndFirebaseService {
     private afAuth: AngularFireAuth,
     private navigation: NavigationService,
     private errorService: ErrorService,
-    private snackService: SnackBarService
+    private snackService: SnackBarService,
+    private spinner: NgxSpinnerService
   ) { }
 
   public getParams(): any {
@@ -80,10 +83,18 @@ export class BackEndFirebaseService {
           resolve();
         })
         .catch(err => {
-          console.log(err)
+          this.hideLoading();
           this.textMsg.next(errorTextObj);
           this.navigation.navigateToRoute('./area-de-autenticacao',{});
         })
     })
+  }
+
+  public showLoading(): void{
+    this.spinner.show();
+  }
+
+  public hideLoading(): void{
+    this.spinner.hide();
   }
 }

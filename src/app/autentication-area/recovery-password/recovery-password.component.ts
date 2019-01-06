@@ -8,6 +8,7 @@ import { NavigationService } from 'src/app/_services/navigation.service';
 import { BANNERENTER } from 'src/app/_animations/animation-banner';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { SnackBarService } from 'src/app/_services/snack-bar.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-recovery-password',
@@ -27,7 +28,8 @@ export class RecoveryPasswordComponent implements OnInit {
     private fb: FormBuilder,
     private afs: AngularFireAuth,
     private errorService: ErrorService,
-    private snackBarService: SnackBarService
+    private snackBarService: SnackBarService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -41,15 +43,17 @@ export class RecoveryPasswordComponent implements OnInit {
   }
 
   public formSubmit(){
+    this.spinner.show();
     let email = this.getEmailValue();
     this.afs.auth.sendPasswordResetEmail(email)
       .then(()=>{
+        this.spinner.hide();
         this.formulario.reset();
         this.snackBarService.openSnackBar('Recupere sua senha através do link que te enviamos!','Enviado');
         this.changeToLoginPanel();
-        //deslogar
       })
       .catch((error)=>{
+        this.spinner.hide();
         this.errorService.checkErrorMsg(error.code)
       })
   }

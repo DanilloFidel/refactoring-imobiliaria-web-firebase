@@ -14,6 +14,7 @@ import { LandingAreaComponent } from './landing-area/landing-area.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { MaterialItensModule } from './_material-itens/material-components.module';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AutenticationAreaComponent } from './autentication-area/autentication-area.component';
@@ -56,6 +57,7 @@ import { FIREBASE } from './_utils/constants';
     AngularFireAuthModule,
     AngularFirestoreModule,
     FormsModule,
+    DragDropModule,
     MaterialItensModule,
     NgxSpinnerModule,
   ],
