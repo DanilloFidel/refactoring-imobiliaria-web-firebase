@@ -6,10 +6,9 @@ import { AutenticationAreaComponent } from './autentication-area/autentication-a
 import { UserHelperComponent } from './autentication-area/user-helper/user-helper.component';
 
 
-
 const routes: Routes = [
   { path: '', component: LandingAreaComponent },
-  { path: 'imoveis', component: HousesAreaComponent },
+  { path: 'imoveis', component: HousesAreaComponent},
   { path: 'area-de-autenticacao', component: AutenticationAreaComponent },
   { path: 'auth/resetar-senha', component: UserHelperComponent },
   { path: 'area-do-usuario', loadChildren: './user-area/user-area.module#UserAreaModule' }

@@ -39,6 +39,10 @@ export class UserHelperComponent implements OnInit {
     })
   }
 
+  canDeactivate() {
+    return confirm('Are you sure you want to leave Hello ?');
+}
+
 
   private createForm(){
     this.formulario = this.fb.group({
@@ -73,7 +77,10 @@ export class UserHelperComponent implements OnInit {
   }
 
   public changePassword(): void{
-    this.bckedService.resetPassword(this.getNewPassword());
+    this.bckedService.resetPassword(this.getNewPassword())
+    .then(()=>{
+      this.resetPasswordValidate();
+    });
   }
 
   public resendEmailLink(): void{

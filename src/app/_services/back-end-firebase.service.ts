@@ -80,7 +80,8 @@ export class BackEndFirebaseService {
           resolve();
         })
         .catch(err => {
-          this.errorService.checkErrorMsg(err.code);
+          console.log(err)
+          this.textMsg.next(errorTextObj);
           this.navigation.navigateToRoute('./area-de-autenticacao',{});
         })
     })

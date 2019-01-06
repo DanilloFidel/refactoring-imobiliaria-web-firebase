@@ -25,6 +25,7 @@ import { ParallaxComponent } from './parallax/parallax.component';
 import { ModalComponent } from './modal/modal.component';
 import { RecoveryPasswordComponent } from './autentication-area/recovery-password/recovery-password.component';
 import { UserHelperComponent } from './autentication-area/user-helper/user-helper.component';
+import { HistorySpyDirective } from './_directives/history-spy.directive';
 
 
 
@@ -42,7 +43,8 @@ import { UserHelperComponent } from './autentication-area/user-helper/user-helpe
     ParallaxComponent,
     ModalComponent,
     RecoveryPasswordComponent,
-    UserHelperComponent
+    UserHelperComponent,
+    HistorySpyDirective
   ],
   imports: [
     BrowserModule,

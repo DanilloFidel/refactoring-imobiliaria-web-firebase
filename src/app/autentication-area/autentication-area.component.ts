@@ -30,6 +30,10 @@ export class AutenticationAreaComponent implements OnInit {
       })
   }
 
+  canDeactivate() {
+    return confirm('Are you sure you want to leave Hello ?');
+  }
+
   public buildUserHelpPanel(): void {
     this.showLoginFormPanel = false;
     this.showUserFormHelper = true;

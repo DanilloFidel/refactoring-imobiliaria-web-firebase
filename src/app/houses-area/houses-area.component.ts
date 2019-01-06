@@ -12,4 +12,5 @@ export class HousesAreaComponent implements OnInit {
   ngOnInit() {
   }
 
+
 }
