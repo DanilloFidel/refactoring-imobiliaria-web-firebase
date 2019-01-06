@@ -1,0 +1,13 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /usuarios/{document=**} {
+    	allow create, read: if true;
+      allow write, update: if request.auth != null;
+      allow delete: if request.auth != null && !resource.data.exists();
+    }
+    
+    match /imoveis/{novo=**}{
+    	allow read, write: if true;
+    }
+  }
+}

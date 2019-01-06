@@ -9,7 +9,9 @@ import {
   MatIconModule,
   MatSnackBar,
   MatSnackBarContainer,
-  MatSnackBarModule
+  MatSnackBarModule,
+  DateAdapter,
+  MatNativeDateModule
 } from '@angular/material';
 
 
@@ -22,7 +24,8 @@ import {
     MatDialogModule,
     MatProgressSpinnerModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatNativeDateModule
   ],
   exports: [
     MatSnackBarModule,
@@ -41,4 +44,8 @@ import {
     MatSnackBar
   ]
 })
-export class MaterialItensModule { }
+export class MaterialItensModule {
+  constructor(private dateAdapter: DateAdapter<Date>) {
+    this.dateAdapter.setLocale("sk-SK");
+  }
+ }

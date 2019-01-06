@@ -26,6 +26,7 @@ import { ModalComponent } from './modal/modal.component';
 import { RecoveryPasswordComponent } from './autentication-area/recovery-password/recovery-password.component';
 import { UserHelperComponent } from './autentication-area/user-helper/user-helper.component';
 import { HistorySpyDirective } from './_directives/history-spy.directive';
+import { FIREBASE } from './_utils/constants';
 
 
 
@@ -51,7 +52,7 @@ import { HistorySpyDirective } from './_directives/history-spy.directive';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(FIREBASE),
     AngularFireAuthModule,
     AngularFirestoreModule,
     FormsModule,

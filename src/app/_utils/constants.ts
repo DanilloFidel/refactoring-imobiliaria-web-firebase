@@ -48,5 +48,15 @@ export const queryParams = {
   }
 }
 
+export const FIREBASE = {
+    apiKey: "AIzaSyA44AiIKvrnWcNsi7sJ5ZGfF2YjyjkgN2s",
+    authDomain: "imobiliaria-web.firebaseapp.com",
+    databaseURL: "https://imobiliaria-web.firebaseio.com",
+    projectId: "imobiliaria-web",
+    storageBucket: "imobiliaria-web.appspot.com",
+    messagingSenderId: "914381001581"
+  };
+
+
 
 

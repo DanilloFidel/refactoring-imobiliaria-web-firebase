@@ -16,7 +16,8 @@ import { NavigationService } from 'src/app/_services/navigation.service';
   animations: [ BANNERENTER ]
 })
 export class UserHelperComponent implements OnInit {
-  @Output() public showFormPanel: EventEmitter<string> = new EventEmitter<string>()
+  @Output() public showFormPanel: EventEmitter<string> = new EventEmitter<string>();
+  public formPanelTransformState: string = 'criado';
   public formulario: FormGroup;
   public errors: {[key: string]: string} = {};
   public passwordHide: boolean = true;
