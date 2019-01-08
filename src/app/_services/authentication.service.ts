@@ -44,7 +44,7 @@ export class AuthenticationService implements CanActivate {
       this.angularFireAuth.auth.createUserWithEmailAndPassword(newUser.email, newUser.senha)
         .then((resp) => {
           this.writeUserInDatabase(newUser).then(() => {
-            this.sendEmailVerification();
+            resp.user.sendEmailVerification()
             this.closeLoadingOverlay();
             }
           )
@@ -73,11 +73,9 @@ export class AuthenticationService implements CanActivate {
             this.setUserToken();
             resolve();
           }else{
-            this.sendEmailVerification()
-              .then(()=>{
-                this.logout();
-                reject();
-              })
+           // this.sendEmailVerification()
+            this.logout();
+            reject();
           }
           this.closeLoadingOverlay();
         })
@@ -113,14 +111,14 @@ export class AuthenticationService implements CanActivate {
   }
 
   public async sendEmailVerification(){
-    await this.user.sendEmailVerification(this.getActionCodeSettings());
+    await this.user.sendEmailVerification();
   }
 
   private getActionCodeSettings(){
     return this.actionCodeSettings = {
       // URL you want to redirect back to. The domain (www.example.com) for this
       // URL must be whitelisted in the Firebase Console.
-      url: 'http://localhost:4200/?email=' + this.user.email,
+      url: 'http://localhost:4200/?email=' + 'danillo.gomes@zup.com.br',
       // This must be true.
       handleCodeInApp: true
     };

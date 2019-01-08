@@ -30,6 +30,10 @@ export class AutenticationAreaComponent implements OnInit {
       })
   }
 
+  public checkEmailResendType(): void{
+    alert('boo')
+  }
+
 
   public buildUserHelpPanel(): void {
     this.showLoginFormPanel = false;

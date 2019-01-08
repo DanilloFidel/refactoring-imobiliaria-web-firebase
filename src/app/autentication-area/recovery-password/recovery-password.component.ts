@@ -10,6 +10,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { SnackBarService } from 'src/app/_services/snack-bar.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
+
 @Component({
   selector: 'app-recovery-password',
   templateUrl: './recovery-password.component.html',
@@ -22,6 +23,7 @@ export class RecoveryPasswordComponent implements OnInit {
   public passwordHide: boolean = true;
   public formulario: FormGroup;
   public fileNameDialogRef: MatDialogRef<ModalComponent>;
+  public title = 'RECUPERAR SENHA';
 
 
   constructor(

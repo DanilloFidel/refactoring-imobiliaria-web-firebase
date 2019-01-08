@@ -8,7 +8,21 @@
   <div *ngIf="showRecoveryFormPanel">
     <app-recovery-password (showFormPanel)="showFormPanel($event)"></app-recovery-password>
   </div>
-  <div *ngIf="showUserFormHelper">
-    <app-user-helper (showFormPanel)="showFormPanel($event)"></app-user-helper>
+  <div *ngIf="showUserFormHelper; else invalidCode">
+    <app-user-helper (showFormPanel)="showFormPanel($event)">
+      <div class="btn-wrapper">
+        <button mat-raised-button type="button" class="btn-login" (click)="checkEmailResendType()" [disabled]="!bckendFb.resetPwdFormValid">alterar senha</button>
+      </div>
+    </app-user-helper>
   </div>
+  <ng-template #invalidCode>
+    hahah
+    <div *ngIf="invalidValidateEmailCode">
+      <app-user-helper (showFormPanel)="showFormPanel($event)">
+        <div class="btn-wrapper">
+          <button mat-raised-button type="button" class="btn-login" (click)="resendConfirmationLink()">Reenviar link</button>
+        </div>
+      </app-user-helper>
+    </div>
+  </ng-template>
 </div>

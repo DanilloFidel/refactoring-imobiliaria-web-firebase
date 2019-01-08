@@ -23,13 +23,13 @@ export class BackEndFirebaseService {
   public textMsg = new BehaviorSubject(resetPwdFormTextObj);
   public panelText = this.textMsg.asObservable();
   public emailUser: string;
+  public resetPwdFormValid: boolean;
 
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private afAuth: AngularFireAuth,
     private navigation: NavigationService,
-    private errorService: ErrorService,
     private snackService: SnackBarService,
     private spinner: NgxSpinnerService
   ) { }

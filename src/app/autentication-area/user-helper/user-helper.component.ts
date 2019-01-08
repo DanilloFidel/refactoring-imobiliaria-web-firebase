@@ -46,7 +46,13 @@ export class UserHelperComponent implements OnInit {
       senha: new FormControl('', [Validators.required, Validators.pattern(REGEX.password) ]),
       confirmarSenha: new FormControl('',  [CustomValidators.matchPasswordValidator('senha')])
     });
-    this.formulario.statusChanges.subscribe(()=>{
+    this.formulario.statusChanges.subscribe((resp)=>{
+      console.log('status form: ', resp)
+    if(this.formulario.valid){
+      this.bckedService.resetPwdFormValid = true;
+    }else{
+      this.bckedService.resetPwdFormValid = false;
+    }
     this.errors = this.errorService.updateErrorMessages(this.formulario)
     })
   }

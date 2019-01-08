@@ -13,7 +13,7 @@
         >
       <mat-error *ngIf="errors.senha">{{ errors.senha }}</mat-error>
     </mat-form-field>
-    <mat-form-field class="panel-form_input">
+    <mat-form-field  class="panel-form_input">
       <input
         matInput
         placeholder="Confirme sua senha"
@@ -28,9 +28,7 @@
         As senhasnão iguais!
       </mat-error>
     </mat-form-field>
-    <div class="btn-wrapper">
-      <button mat-raised-button type="submit" class="btn-login" (click)="checkEmailLink()" [disabled]="!formulario.valid && !panelText.error" >{{panelText.btnMsg}}</button>
-      <button mat-raised-button routerLink="" type="button" class="btn-login">Voltar</button>
-    </div>
   </form>
+  <ng-content></ng-content>
+  <button mat-raised-button routerLink="" type="button" class="btn-login">Voltar</button>
 </div>

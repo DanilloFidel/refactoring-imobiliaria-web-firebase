@@ -40,7 +40,15 @@ export const errorTextObj = {
 export const resetPwdFormTextObj = {
   title: 'REDEFINIR SENHA',
   btnMsg: 'Alterar',
-  error: false
+  error: false,
+  mode: 'reset password'
+}
+
+export const emailConfirmedTextObj = {
+  title: 'Email confirmado!',
+  btnMsg: '',
+  error: false,
+  mode: 'confirm email'
 }
 
 export const queryParams = {
