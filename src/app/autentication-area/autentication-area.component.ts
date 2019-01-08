@@ -1,46 +1,42 @@
-import { Component, OnInit } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
-import { Router, ActivatedRoute } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { takeUntil } from 'rxjs/operators';
-import { NavigationService } from '../_services/navigation.service';
-import { ErrorService } from '../_services/error.service';
-import { BackEndFirebaseService } from '../_services/back-end-firebase.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { UserHelperService } from '../_services/user-helper.service';
+import { ActivatedRoute } from '@angular/router';
+import { userFactory } from '../_utils/userFactory';
 
 @Component({
   selector: 'app-autentication-area',
   templateUrl: './autentication-area.component.html',
   styleUrls: ['./autentication-area.component.less']
 })
-export class AutenticationAreaComponent implements OnInit {
+export class AutenticationAreaComponent implements OnInit, OnDestroy {
   public showRegisterFormPanel: boolean;
   public showRecoveryFormPanel: boolean;
   public showLoginFormPanel: boolean = true;
   public showUserFormHelper: boolean;
-  public aviso: any;
+
 
   constructor(
-    private bckendFb: BackEndFirebaseService
+    private userHelper: UserHelperService
   ) { }
 
   ngOnInit() {
-    this.bckendFb.verifyIfExistingParams()
-      .then((resp) => {
-        resp && this.buildUserHelpPanel();
-      })
+    this.userHelper.$params.subscribe((params)=>{
+      params ? this.showFormPanel('user-helper') : this.showFormPanel('login');
+    })
   }
 
-
-  public buildUserHelpPanel(): void {
-    this.showLoginFormPanel = false;
-    this.showUserFormHelper = true;
-    this.bckendFb.checkLinkValidate().catch((email)=>console.log(email));
+  ngOnDestroy() {
+    this.userHelper.$params.unsubscribe();
   }
 
   public showFormPanel(evento: string): void {
     switch (evento) {
       case 'register':
         this.showRegisterFormPanel = true;
+        this.showLoginFormPanel = false;
+        break;
+        case 'user-helper':
+        this.showUserFormHelper = true;
         this.showLoginFormPanel = false;
         break;
       case 'recovery':

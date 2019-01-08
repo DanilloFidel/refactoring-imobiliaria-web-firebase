@@ -30,7 +30,7 @@
     </mat-form-field>
     <div class="btn-wrapper">
       <button mat-raised-button type="submit" class="btn-login" (click)="checkEmailLink()" [disabled]="!formulario.valid && !panelText.error" >{{panelText.btnMsg}}</button>
-      <button mat-raised-button routerLink="" type="button" class="btn-login">Voltar</button>
+      <button mat-raised-button (click)="backToLoginPanel()" type="button" class="btn-login">Voltar</button>
     </div>
   </form>
 </div>

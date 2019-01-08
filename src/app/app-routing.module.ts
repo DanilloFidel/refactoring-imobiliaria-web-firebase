@@ -9,8 +9,11 @@ import { UserHelperComponent } from './autentication-area/user-helper/user-helpe
 const routes: Routes = [
   { path: '', component: LandingAreaComponent },
   { path: 'imoveis', component: HousesAreaComponent},
-  { path: 'area-de-autenticacao', component: AutenticationAreaComponent },
-  { path: 'auth/resetar-senha', component: UserHelperComponent },
+  { path: 'area-de-autenticacao', component: AutenticationAreaComponent,
+    children: [
+      { path: 'suporte-usuario', component: UserHelperComponent }
+    ]
+  },
   { path: 'area-do-usuario', loadChildren: './user-area/user-area.module#UserAreaModule' }
 ];
 

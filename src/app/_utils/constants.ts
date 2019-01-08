@@ -27,6 +27,10 @@ export const firebaseErrorMenssage = [
 
 ]
 
+export const PATHS = {
+  areaDeAutenticacao: 'area-de-autenticacao'
+}
+
 export const prefixStorage = {
   userTokenPrefix: '#tk'
 }

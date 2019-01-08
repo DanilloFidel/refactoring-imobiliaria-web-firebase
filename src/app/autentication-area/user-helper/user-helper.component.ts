@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { PATHS } from './../../_utils/constants';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { BANNERENTER } from 'src/app/_animations/animation-banner';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { REGEX, resetPwdFormTextObj, queryParams } from 'src/app/_utils/constants';
@@ -8,6 +9,7 @@ import { BackEndFirebaseService } from 'src/app/_services/back-end-firebase.serv
 import { AngularFireAuth } from '@angular/fire/auth';
 import { SnackBarService } from 'src/app/_services/snack-bar.service';
 import { NavigationService } from 'src/app/_services/navigation.service';
+import { UserHelperService } from '../../_services/user-helper.service';
 
 @Component({
   selector: 'app-user-helper',
@@ -15,7 +17,7 @@ import { NavigationService } from 'src/app/_services/navigation.service';
   styleUrls: ['./user-helper.component.less'],
   animations: [ BANNERENTER ]
 })
-export class UserHelperComponent implements OnInit {
+export class UserHelperComponent implements OnInit, OnDestroy {
   @Output() public showFormPanel: EventEmitter<string> = new EventEmitter<string>();
   public formPanelTransformState: string = 'criado';
   public formulario: FormGroup;
@@ -29,7 +31,8 @@ export class UserHelperComponent implements OnInit {
     private bckedService: BackEndFirebaseService,
     private afs: AngularFireAuth,
     private snackService: SnackBarService,
-    private navigation: NavigationService
+    private navigation: NavigationService,
+    private userHelper: UserHelperService
   ) { }
 
   ngOnInit() {
@@ -40,6 +43,9 @@ export class UserHelperComponent implements OnInit {
     })
   }
 
+  ngOnDestroy() {
+    this.showFormPanel.emit('login');
+  }
 
   private createForm(){
     this.formulario = this.fb.group({
@@ -86,5 +92,9 @@ export class UserHelperComponent implements OnInit {
     this.showFormPanel.emit('recovery');
   }
 
+  public backToLoginPanel(): void{
+    this.userHelper.$params.next(null);
+    this.navigation.navigateToRoute(PATHS.areaDeAutenticacao);
+  }
 
 }
