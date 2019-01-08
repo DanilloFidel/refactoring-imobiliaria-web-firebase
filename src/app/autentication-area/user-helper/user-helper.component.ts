@@ -1,5 +1,5 @@
 import { PATHS } from './../../_utils/constants';
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy, ViewChild, Renderer2, AfterViewInit, ElementRef } from '@angular/core';
 import { BANNERENTER } from 'src/app/_animations/animation-banner';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { REGEX, resetPwdFormTextObj, queryParams } from 'src/app/_utils/constants';
@@ -17,8 +17,9 @@ import { UserHelperService } from '../../_services/user-helper.service';
   styleUrls: ['./user-helper.component.less'],
   animations: [ BANNERENTER ]
 })
-export class UserHelperComponent implements OnInit, OnDestroy {
+export class UserHelperComponent implements OnInit, OnDestroy, AfterViewInit {
   @Output() public showFormPanel: EventEmitter<string> = new EventEmitter<string>();
+  @ViewChild('formBtnWrapper') public formBtnWrapper: ElementRef;
   public formPanelTransformState: string = 'criado';
   public formulario: FormGroup;
   public errors: {[key: string]: string} = {};
@@ -32,7 +33,8 @@ export class UserHelperComponent implements OnInit, OnDestroy {
     private afs: AngularFireAuth,
     private snackService: SnackBarService,
     private navigation: NavigationService,
-    private userHelper: UserHelperService
+    private userHelper: UserHelperService,
+    private renderer: Renderer2
   ) { }
 
   ngOnInit() {
@@ -45,6 +47,10 @@ export class UserHelperComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.showFormPanel.emit('login');
+  }
+
+  ngAfterViewInit() {
+    this.buildFormBtn();
   }
 
   private createForm(){
@@ -95,6 +101,13 @@ export class UserHelperComponent implements OnInit, OnDestroy {
   public backToLoginPanel(): void{
     this.userHelper.$params.next(null);
     this.navigation.navigateToRoute(PATHS.areaDeAutenticacao);
+  }
+
+  private buildFormBtn(): void{
+    let btn = this.renderer.createElement('button');
+    let btnTxt = this.renderer.createText('Enviar');
+    this.renderer.appendChild(btn, btnTxt);
+    this.renderer.appendChild(this.formBtnWrapper.nativeElement, btn);
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserHelperService } from '../_services/user-helper.service';
 import { ActivatedRoute } from '@angular/router';
 import { userFactory } from '../_utils/userFactory';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-autentication-area',
@@ -13,6 +14,7 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy {
   public showRecoveryFormPanel: boolean;
   public showLoginFormPanel: boolean = true;
   public showUserFormHelper: boolean;
+  public paramsSubscription: Subscription
 
 
   constructor(
@@ -20,13 +22,17 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.userHelper.$params.subscribe((params)=>{
-      params ? this.showFormPanel('user-helper') : this.showFormPanel('login');
-    })
+    this.watchParamsInUrl();
   }
 
   ngOnDestroy() {
-    this.userHelper.$params.unsubscribe();
+    this.paramsSubscription && this.paramsSubscription.unsubscribe();
+  }
+
+  private watchParamsInUrl(): void{
+    this.paramsSubscription = this.userHelper.$params.subscribe((params)=>{
+      params ? this.showFormPanel('user-helper') : this.showFormPanel('login');
+    })
   }
 
   public showFormPanel(evento: string): void {

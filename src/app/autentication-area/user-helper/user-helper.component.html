@@ -3,7 +3,7 @@
     <div class="titles">
         <span class="titles-register">{{panelText.title}}</span>
       </div>
-  <form class="panel-form" [formGroup]="formulario">
+  <form class="panel-form" [formGroup]="formulario" *ngIf="formToRecoveryPwd">
     <mat-form-field class="panel-form_input" hintLabel="*Utilize letras e numeros">
       <input
         matInput
@@ -29,8 +29,10 @@
       </mat-error>
     </mat-form-field>
     <div class="btn-wrapper">
-      <button mat-raised-button type="submit" class="btn-login" (click)="checkEmailLink()" [disabled]="!formulario.valid && !panelText.error" >{{panelText.btnMsg}}</button>
-      <button mat-raised-button (click)="backToLoginPanel()" type="button" class="btn-login">Voltar</button>
+      <!-- <button mat-raised-button type="submit" class="btn-login" (click)="checkEmailLink()" [disabled]="!formulario.valid && !panelText.error" >{{panelText.btnMsg}}</button> -->
     </div>
   </form>
+  <div class="btn-wrapper" #formBtnWrapper>
+      <button mat-raised-button (click)="backToLoginPanel()" type="button" class="btn-login">Voltar</button>
+  </div>
 </div>
