@@ -108,8 +108,12 @@ export class AuthenticationService implements CanActivate {
     this.spinner.hide();
   }
 
-  public async sendEmailVerification(){
-    await this.user.sendEmailVerification();
+  public async sendEmailVerification(): Promise<any>{
+    await this.user.sendEmailVerification()
+      .catch(()=>{
+        return Promise.reject('falhou');
+      })
+    this.logout();
   }
 
   private checkEmailIsVerified(user: any): boolean{
@@ -117,7 +121,13 @@ export class AuthenticationService implements CanActivate {
   }
 
   public logout(): void{
-    this.angularFireAuth.auth.signOut();
+    this.angularFireAuth.auth.signOut()
+      .then(()=>{
+
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
     sessionStorage.removeItem(prefixStorage.userTokenPrefix);
   }
 
