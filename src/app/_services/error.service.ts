@@ -16,7 +16,8 @@ export class ErrorService {
     this.errors = {};
     for (const message of formErrorMenssage) {
       const control = form.get(message.forControl);
-      if (control && control.dirty && control.invalid && control.errors[message.forValidator] &&
+      if (control && (control.dirty || control.pristine) &&
+        control.invalid && control.errors[message.forValidator] &&
         !this.errors[message.forControl]) {
         this.errors[message.forControl] = message.text;
         break;

@@ -3,7 +3,7 @@
     <div class="titles">
         <span class="titles-register">{{panelText.title}}</span>
       </div>
-  <form class="panel-form" [formGroup]="formulario" *ngIf="formToRecoveryPwd">
+  <form class="panel-form" [formGroup]="formulario" *ngIf="recoveryPwdForm">
     <mat-form-field class="panel-form_input" hintLabel="*Utilize letras e numeros">
       <input
         matInput
@@ -25,14 +25,14 @@
       </mat-icon>
       <mat-error
       *ngIf="!formulario.get('confirmarSenha').valid && formulario.get('confirmarSenha').touched">
-        As senhasnão iguais!
+        As senhas não iguais!
       </mat-error>
     </mat-form-field>
     <div class="btn-wrapper">
-      <!-- <button mat-raised-button type="submit" class="btn-login" (click)="checkEmailLink()" [disabled]="!formulario.valid && !panelText.error" >{{panelText.btnMsg}}</button> -->
     </div>
   </form>
   <div class="btn-wrapper" #formBtnWrapper>
-      <button mat-raised-button (click)="backToLoginPanel()" type="button" class="btn-login">Voltar</button>
+    <ng-content></ng-content>
+    <button mat-raised-button (click)="backToLoginPanel()" type="button" class="btn-back">Voltar</button>
   </div>
 </div>

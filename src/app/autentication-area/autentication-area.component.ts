@@ -1,38 +1,63 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 import { UserHelperService } from '../_services/user-helper.service';
-import { ActivatedRoute } from '@angular/router';
-import { userFactory } from '../_utils/userFactory';
 import { Subscription } from 'rxjs';
+import { UserHelperComponent } from './user-helper/user-helper.component';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { NavigationService } from '../_services/navigation.service';
+import { PATHS } from '../_utils/constants';
 
 @Component({
   selector: 'app-autentication-area',
   templateUrl: './autentication-area.component.html',
   styleUrls: ['./autentication-area.component.less']
 })
-export class AutenticationAreaComponent implements OnInit, OnDestroy {
+export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewInit {
+  @ViewChild(UserHelperComponent) helperComponent: UserHelperComponent;
   public showRegisterFormPanel: boolean;
   public showRecoveryFormPanel: boolean;
-  public showLoginFormPanel: boolean = true;
+  public showLoginFormPanel: boolean;
   public showUserFormHelper: boolean;
-  public paramsSubscription: Subscription
-
+  public paramsSubscription: Subscription;
+  public formValidSubscription: Subscription;
+  public formValid: boolean;
+  public emailChangeIsDisable: boolean;
+  public isConfirmedEmail: boolean;
 
   constructor(
-    private userHelper: UserHelperService
+    private userHelper: UserHelperService,
+    private loader: NgxSpinnerService,
+    private navigator: NavigationService
   ) { }
 
   ngOnInit() {
     this.watchParamsInUrl();
+    this.userHelper.$emailChangeIsDisable.subscribe((resp)=>{
+      this.emailChangeIsDisable = resp;
+    })
   }
 
   ngOnDestroy() {
     this.paramsSubscription && this.paramsSubscription.unsubscribe();
+    this.formValidSubscription && this.formValidSubscription.unsubscribe();
+  }
+
+  ngAfterViewInit(): void{
+    this.formValidSubscription = this.userHelper.$validForm.subscribe((value)=>{
+      this.formValid = value;
+    })
   }
 
   private watchParamsInUrl(): void{
     this.paramsSubscription = this.userHelper.$params.subscribe((params)=>{
       params ? this.showFormPanel('user-helper') : this.showFormPanel('login');
     })
+  }
+
+  public applyActionCode(): void{
+    this.userHelper.applyCode()
+      .then(()=>{
+        this.navigator.navigateToRoute(PATHS.areaDoUsuario);
+      })
   }
 
   public showFormPanel(evento: string): void {
@@ -56,6 +81,17 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy {
     }
   }
 
+  public changePassword(): void{
+    this.loader.show();
+    this.userHelper.sendNewPasswordToFirebase(this.helperComponent.getNewPassword())
+      .then((err)=>{
+        this.loader.hide();
+        //!err &&
+      })
+  }
 
+  public checkTypeOfResendEmail(): void{
+
+  }
 
 }

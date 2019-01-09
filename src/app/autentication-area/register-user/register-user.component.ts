@@ -49,8 +49,8 @@ export class RegisterUserComponent implements OnInit {
       senha: new FormControl('', [Validators.required, Validators.minLength(6) ,Validators.pattern(REGEX.password) ]),
       confirmarSenha: new FormControl('',  [CustomValidators.matchPasswordValidator('senha')])
     });
-    this.formulario.statusChanges.subscribe(()=>{
-    this.errors = this.errorService.updateErrorMessages(this.formulario)
+    this.formulario.valueChanges.subscribe(()=>{
+      this.errors = this.errorService.updateErrorMessages(this.formulario);
     })
   }
 

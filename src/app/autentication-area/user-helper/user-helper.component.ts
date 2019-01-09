@@ -10,6 +10,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { SnackBarService } from 'src/app/_services/snack-bar.service';
 import { NavigationService } from 'src/app/_services/navigation.service';
 import { UserHelperService } from '../../_services/user-helper.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-user-helper',
@@ -17,40 +18,42 @@ import { UserHelperService } from '../../_services/user-helper.service';
   styleUrls: ['./user-helper.component.less'],
   animations: [ BANNERENTER ]
 })
-export class UserHelperComponent implements OnInit, OnDestroy, AfterViewInit {
+export class UserHelperComponent implements OnInit, OnDestroy{
   @Output() public showFormPanel: EventEmitter<string> = new EventEmitter<string>();
-  @ViewChild('formBtnWrapper') public formBtnWrapper: ElementRef;
   public formPanelTransformState: string = 'criado';
   public formulario: FormGroup;
   public errors: {[key: string]: string} = {};
   public passwordHide: boolean = true;
   public panelText = resetPwdFormTextObj;
+  public recoveryPwdForm: boolean;
 
   constructor(
     private fb: FormBuilder,
     private errorService: ErrorService,
     private bckedService: BackEndFirebaseService,
-    private afs: AngularFireAuth,
-    private snackService: SnackBarService,
     private navigation: NavigationService,
-    private userHelper: UserHelperService,
-    private renderer: Renderer2
+    private userHelper: UserHelperService
   ) { }
 
   ngOnInit() {
     this.createForm();
-    this.bckedService.panelText.subscribe(response =>{
+    this.userHelper.textMsg.subscribe(response =>{
         response.error && this.setdDisableForm();
         this.panelText = response;
+        this.recoveryPwdForm = true;
     })
+    this.userHelper.checkUrlCodeIsValid()
+      .then(()=>{
+
+
+      })
+      .catch(()=>{
+        this.recoveryPwdForm = false;
+      })
   }
 
   ngOnDestroy() {
     this.showFormPanel.emit('login');
-  }
-
-  ngAfterViewInit() {
-    this.buildFormBtn();
   }
 
   private createForm(){
@@ -59,8 +62,17 @@ export class UserHelperComponent implements OnInit, OnDestroy, AfterViewInit {
       confirmarSenha: new FormControl('',  [CustomValidators.matchPasswordValidator('senha')])
     });
     this.formulario.statusChanges.subscribe(()=>{
-    this.errors = this.errorService.updateErrorMessages(this.formulario)
+    this.errors = this.errorService.updateErrorMessages(this.formulario);
+    this.validateForm();
     })
+  }
+
+  private validateForm(): void{
+    if(this.formulario.valid){
+      this.userHelper.$validForm.next(true);
+    }else{
+      this.userHelper.$validForm.next(false);
+    }
   }
 
   public getNewPassword(): string{
@@ -101,13 +113,6 @@ export class UserHelperComponent implements OnInit, OnDestroy, AfterViewInit {
   public backToLoginPanel(): void{
     this.userHelper.$params.next(null);
     this.navigation.navigateToRoute(PATHS.areaDeAutenticacao);
-  }
-
-  private buildFormBtn(): void{
-    let btn = this.renderer.createElement('button');
-    let btnTxt = this.renderer.createText('Enviar');
-    this.renderer.appendChild(btn, btnTxt);
-    this.renderer.appendChild(this.formBtnWrapper.nativeElement, btn);
   }
 
 }

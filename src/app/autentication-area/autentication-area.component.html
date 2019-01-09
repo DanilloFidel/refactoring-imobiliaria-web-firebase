@@ -9,6 +9,35 @@
     <app-recovery-password (showFormPanel)="showFormPanel($event)"></app-recovery-password>
   </div>
   <div *ngIf="showUserFormHelper">
-    <app-user-helper (showFormPanel)="showFormPanel($event)"></app-user-helper>
-  </div>
+    <app-user-helper (showFormPanel)="showFormPanel($event)">
+      <button
+      *ngIf="!emailChangeIsDisable"
+      mat-raised-button
+      type="button"
+      class="btn-submit"
+      (click)="checkTypeOfResendEmail()"
+      >
+      Enviar
+    </button>
+    <button
+      *ngIf="emailChangeIsDisable"
+      mat-raised-button
+      type="button"
+      class="btn-submit"
+      (click)="changePassword()"
+      [disabled]="!formValid"
+      >
+      Alterar
+  </button>
+  <button
+  *ngIf="isConfirmedEmail"
+  mat-raised-button
+  type="button"
+  class="btn-submit"
+  (click)="applyActionCode()"
+  >
+  Login
+</button>
+</app-user-helper>
+</div>
 </div>

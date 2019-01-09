@@ -73,11 +73,7 @@ export class AuthenticationService implements CanActivate {
             this.setUserToken();
             resolve();
           }else{
-            this.sendEmailVerification()
-              .then(()=>{
-                this.logout();
-                reject();
-              })
+            reject();
           }
           this.closeLoadingOverlay();
         })
@@ -113,17 +109,7 @@ export class AuthenticationService implements CanActivate {
   }
 
   public async sendEmailVerification(){
-    await this.user.sendEmailVerification(this.getActionCodeSettings());
-  }
-
-  private getActionCodeSettings(){
-    return this.actionCodeSettings = {
-      // URL you want to redirect back to. The domain (www.example.com) for this
-      // URL must be whitelisted in the Firebase Console.
-      url: 'http://localhost:4200/?email=' + this.user.email,
-      // This must be true.
-      handleCodeInApp: true
-    };
+    await this.user.sendEmailVerification();
   }
 
   private checkEmailIsVerified(user: any): boolean{

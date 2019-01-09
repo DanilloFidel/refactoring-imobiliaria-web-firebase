@@ -28,7 +28,9 @@ export const firebaseErrorMenssage = [
 ]
 
 export const PATHS = {
-  areaDeAutenticacao: 'area-de-autenticacao'
+  areaDeAutenticacao: 'area-de-autenticacao',
+  areaDoUsuario: 'area-do-usuario'
+
 }
 
 export const prefixStorage = {
@@ -44,6 +46,12 @@ export const errorTextObj = {
 export const resetPwdFormTextObj = {
   title: 'REDEFINIR SENHA',
   btnMsg: 'Alterar',
+  error: false
+}
+
+export const emailConfirmedTextObj = {
+  title: 'EMAIL CONFIRMADO',
+  btnMsg: 'Entrar',
   error: false
 }
 
