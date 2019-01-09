@@ -3,41 +3,41 @@
     <app-login-user (showFormPanel)="showFormPanel($event)"></app-login-user>
   </div>
   <div *ngIf="showRegisterFormPanel">
-    <app-register-user (showFormPanel)="showFormPanel($event)"></app-register-user>
+    <app-register-user
+      (showFormPanel)="showFormPanel($event)"
+    ></app-register-user>
   </div>
   <div *ngIf="showRecoveryFormPanel">
-    <app-recovery-password (showFormPanel)="showFormPanel($event)"></app-recovery-password>
+    <app-recovery-password
+      (showFormPanel)="showFormPanel($event)"
+    ></app-recovery-password>
   </div>
   <div *ngIf="showUserFormHelper">
-    <app-user-helper (showFormPanel)="showFormPanel($event)">
+    <app-user-helper
+      (showFormPanel)="showFormPanel($event)"
+      (changeBodyMsg)="helperMsg = $event"
+      (changeBtnType)="notConfirmedEmail = $event"
+    >
+      <span *ngIf="showBodyMsg">{{ helperMsg }}</span>
       <button
-      *ngIf="!emailChangeIsDisable"
-      mat-raised-button
-      type="button"
-      class="btn-submit"
-      (click)="checkTypeOfResendEmail()"
+        *ngIf="emailChangeIsDisable"
+        mat-raised-button
+        type="button"
+        class="btn-submit"
+        (click)="urlMode === 'verifyEmail' ? changePanelAndClearUrl('login') : changePanelAndClearUrl('recovery')"
       >
-      Enviar
-    </button>
-    <button
-      *ngIf="emailChangeIsDisable"
-      mat-raised-button
-      type="button"
-      class="btn-submit"
-      (click)="changePassword()"
-      [disabled]="!formValid"
+        {{ btnMsg }}
+      </button>
+      <button
+        *ngIf="!emailChangeIsDisable"
+        mat-raised-button
+        type="button"
+        class="btn-submit"
+        (click)="changePassword()"
+        [disabled]="!formValid"
       >
-      Alterar
-  </button>
-  <button
-  *ngIf="isConfirmedEmail"
-  mat-raised-button
-  type="button"
-  class="btn-submit"
-  (click)="applyActionCode()"
-  >
-  Login
-</button>
-</app-user-helper>
-</div>
+        Alterar
+      </button>
+    </app-user-helper>
+  </div>
 </div>

@@ -55,11 +55,13 @@ export class UserHelperService {
     return new Promise((resolve,reject)=>{
       this.getAuth().checkActionCode(this.oobCode)
         .then(()=>{
-          this.$emailChangeIsDisable.next(true);
+          this.$emailChangeIsDisable.next(false);
+          this.textMsg.next(emailConfirmedTextObj);
+          this.applyCode();
           resolve();
         })
         .catch(()=>{
-          this.$emailChangeIsDisable.next(false);
+          this.$emailChangeIsDisable.next(true);
           this.recoveryPwdForm = false;
           this.textMsg.next(errorTextObj);
           reject();

@@ -50,7 +50,7 @@ export const resetPwdFormTextObj = {
 }
 
 export const emailConfirmedTextObj = {
-  title: 'EMAIL CONFIRMADO',
+  title: 'CONFIRME SEU EMAIL',
   btnMsg: 'Entrar',
   error: false
 }
@@ -59,6 +59,12 @@ export const queryParams = {
   resendLink: {
     linkenviado: true
   }
+}
+
+export const HELPERTEXTS = {
+  loginAlert : 'Efetue login para reenviar um novo email de confirmação',
+  resetAlert: 'Retorne ao painel para recuperar sua senha',
+  emailConfirmedAlert: 'Seu email foi confirmado, você ja pode efetuar login'
 }
 
 export const FIREBASE = {

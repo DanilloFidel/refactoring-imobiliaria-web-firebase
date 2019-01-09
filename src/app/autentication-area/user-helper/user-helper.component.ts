@@ -11,6 +11,7 @@ import { SnackBarService } from 'src/app/_services/snack-bar.service';
 import { NavigationService } from 'src/app/_services/navigation.service';
 import { UserHelperService } from '../../_services/user-helper.service';
 import { BehaviorSubject } from 'rxjs';
+import { HELPERTEXTS } from '../../_utils/constants';
 
 @Component({
   selector: 'app-user-helper',
@@ -20,6 +21,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class UserHelperComponent implements OnInit, OnDestroy{
   @Output() public showFormPanel: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public changeBodyMsg: EventEmitter<string> = new EventEmitter<string>();
+  @Output() public changeBtnType: EventEmitter<boolean> = new EventEmitter<boolean>();
   public formPanelTransformState: string = 'criado';
   public formulario: FormGroup;
   public errors: {[key: string]: string} = {};
@@ -40,12 +43,12 @@ export class UserHelperComponent implements OnInit, OnDestroy{
     this.userHelper.textMsg.subscribe(response =>{
         response.error && this.setdDisableForm();
         this.panelText = response;
-        this.recoveryPwdForm = true;
+        //this.recoveryPwdForm = true;
     })
     this.userHelper.checkUrlCodeIsValid()
       .then(()=>{
-
-
+        this.changeBodyMsg.emit(HELPERTEXTS.emailConfirmedAlert);
+        this.changeBtnType.emit(false);
       })
       .catch(()=>{
         this.recoveryPwdForm = false;

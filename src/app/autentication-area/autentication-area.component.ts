@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { UserHelperComponent } from './user-helper/user-helper.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NavigationService } from '../_services/navigation.service';
-import { PATHS } from '../_utils/constants';
+import { PATHS, HELPERTEXTS } from '../_utils/constants';
 
 @Component({
   selector: 'app-autentication-area',
@@ -21,7 +21,11 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewI
   public formValidSubscription: Subscription;
   public formValid: boolean;
   public emailChangeIsDisable: boolean;
-  public isConfirmedEmail: boolean;
+  public notConfirmedEmail: boolean = true;
+  public btnMsg: string;
+  public urlMode: string;
+  public helperMsg: string;
+  public showBodyMsg: boolean;
 
   constructor(
     private userHelper: UserHelperService,
@@ -34,6 +38,7 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewI
     this.userHelper.$emailChangeIsDisable.subscribe((resp)=>{
       this.emailChangeIsDisable = resp;
     })
+    this.checkTypeOfResendEmail();
   }
 
   ngOnDestroy() {
@@ -91,7 +96,26 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewI
   }
 
   public checkTypeOfResendEmail(): void{
+    this.urlMode = this.getParmMode();
+    if(this.urlMode && this.urlMode === 'verifyEmail'){
+      this.btnMsg = 'Entrar'
+      this.helperMsg = HELPERTEXTS.loginAlert;
+    }else if(this.urlMode && this.urlMode === 'resetPassword'){
+      this.btnMsg = 'Voltar e reenviar'
+      this.helperMsg = HELPERTEXTS.resetAlert;
+    }
+    this.showBodyMsg = true;
+  }
 
+  private getParmMode(): string{
+    if(this.userHelper.$params.value){
+      return this.userHelper.$params.value.mode;
+    }
+  }
+
+  public changePanelAndClearUrl(type: string): void{
+    this.navigator.navigateToRoute(PATHS.areaDeAutenticacao);
+    this.showFormPanel(type);
   }
 
 }
