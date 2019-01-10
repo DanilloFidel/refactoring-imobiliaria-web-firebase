@@ -1,55 +1,41 @@
 @import '../../../styles.less';
 
 
-.panel{
+
+.panel-form{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background-color: #F8F8F8;
-  border-radius: 6px;
-  box-shadow: @shadow;
-  @media @smallDevices{
-    margin: 2% 5%;
-  }
-  @media @mediumDevices{
-    margin: 5% 10%;
-  }
-  @media @largeDevices{
-    margin: 5% 20%;
-  }
-  &-form{
-    display: flex;
-    flex-direction: column;
-    padding: 8%;
-    &_input{
-      margin-top: 4%
-    }
-  }
-  .btn-wrapper{
-    margin-top: 5%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    .btn-login{
-      width: 100%;
-      margin: 1% 0
-    }
-    .link-helper{
-      margin-top: 10%;
-      cursor: pointer;
-    }
-  }
-  .titles{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    margin-top: 5%;
-    &-login{
-      border-bottom: 3px solid red
-    }
-    &-register:hover{
-      cursor: pointer;
-      border-bottom: 3px solid red
-    }
+  padding: 8%;
+  &_input{
+    margin-top: 4%
   }
 }
+.btn-wrapper{
+  margin-top: 5%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .btn-login{
+    width: 100%;
+    margin: 1% 0
+  }
+  .link-helper{
+    margin-top: 10%;
+    cursor: pointer;
+  }
+}
+
+.titles{
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 5%;
+  &-login{
+    border-bottom: 3px solid red
+  }
+  &-register:hover{
+    cursor: pointer;
+    border-bottom: 3px solid red
+  }
+}
+

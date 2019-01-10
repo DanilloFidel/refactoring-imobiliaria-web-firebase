@@ -6,12 +6,14 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { NavigationService } from '../_services/navigation.service';
 import { PATHS, HELPERTEXTS } from '../_utils/constants';
 
+
 @Component({
   selector: 'app-autentication-area',
   templateUrl: './autentication-area.component.html',
   styleUrls: ['./autentication-area.component.less']
 })
 export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewInit {
+  public formPanelTransformState: string = 'criado';
   @ViewChild(UserHelperComponent) helperComponent: UserHelperComponent;
   public showRegisterFormPanel: boolean;
   public showRecoveryFormPanel: boolean;

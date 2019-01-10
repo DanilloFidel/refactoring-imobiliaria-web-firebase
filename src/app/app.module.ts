@@ -28,6 +28,7 @@ import { RecoveryPasswordComponent } from './autentication-area/recovery-passwor
 import { UserHelperComponent } from './autentication-area/user-helper/user-helper.component';
 import { HistorySpyDirective } from './_directives/history-spy.directive';
 import { FIREBASE } from './_utils/constants';
+import { AcessPanelComponent } from './autentication-area/acess-panel/acess-panel.component';
 
 
 
@@ -46,7 +47,8 @@ import { FIREBASE } from './_utils/constants';
     ModalComponent,
     RecoveryPasswordComponent,
     UserHelperComponent,
-    HistorySpyDirective
+    HistorySpyDirective,
+    AcessPanelComponent
   ],
   imports: [
     BrowserModule,

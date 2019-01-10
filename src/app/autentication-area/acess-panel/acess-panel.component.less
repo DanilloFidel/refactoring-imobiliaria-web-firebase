@@ -1,0 +1,33 @@
+@import '../../../styles.less';
+
+
+.panel{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #F8F8F8;
+  border-radius: 6px;
+  box-shadow: @shadow;
+  @media @smallDevices{
+    margin: 2% 5%;
+  }
+  @media @mediumDevices{
+    margin: 5% 10%;
+  }
+  @media @largeDevices{
+    margin: 5% 20%;
+  }
+  .btn-wrapper{
+    padding: 0 5% 8%;
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .conteudo{
+    height: 400px;
+    border: 2px solid red;
+    margin: 5% 8% 0;
+  }
+}
