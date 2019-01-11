@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { BANNERENTER } from 'src/app/_animations/animation-banner';
+import { UserPanel } from 'src/app/_utils/interfaces';
 
 @Component({
   selector: 'app-acess-panel',
@@ -9,9 +10,13 @@ import { BANNERENTER } from 'src/app/_animations/animation-banner';
 })
 export class AcessPanelComponent implements OnInit {
   public formPanelTransformState: string = 'criado';
+  public userPanel: UserPanel;
   constructor() { }
 
   ngOnInit() {
+    this.userPanel = {
+      firstTitle: 'CADASTRAR'
+    }
   }
 
 }

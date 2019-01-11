@@ -1,7 +1,4 @@
 <div class="panel" [@animacao-banner]="formPanelTransformState">
-    <div class="titles">
-        <span class="titles-register">REGISTRAR</span>
-      </div>
   <form class="panel-form" [formGroup]="formulario" (ngSubmit)="setNewUserWithService()">
     <mat-form-field class="panel-form_input">
       <input matInput placeholder="Nome completo" formControlName="nome">

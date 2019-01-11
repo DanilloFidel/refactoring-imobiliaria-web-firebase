@@ -18,7 +18,8 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewI
   public showRegisterFormPanel: boolean;
   public showRecoveryFormPanel: boolean;
   public showLoginFormPanel: boolean;
-  public showUserFormHelper: boolean;
+  public showChangePwdFormPanel: boolean;
+  public showNotCofirmedFormPanel: boolean;
   public paramsSubscription: Subscription;
   public formValidSubscription: Subscription;
   public formValid: boolean;
@@ -73,17 +74,17 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewI
         this.showRegisterFormPanel = true;
         this.showLoginFormPanel = false;
         break;
-        case 'user-helper':
-        this.showUserFormHelper = true;
+        case 'not-confirmed':
+        this.showNotCofirmedFormPanel = true;
         this.showLoginFormPanel = false;
         break;
       case 'recovery':
         this.showRecoveryFormPanel = true;
-        this.showLoginFormPanel = this.showUserFormHelper = false;
+        this.showLoginFormPanel = this.showNotCofirmedFormPanel = false;
         break;
       case 'login':
         this.showLoginFormPanel = true;
-        this.showRecoveryFormPanel = this.showUserFormHelper = this.showRegisterFormPanel = false;
+        this.showRecoveryFormPanel = this.showNotCofirmedFormPanel = this.showRegisterFormPanel = false;
         break;
     }
   }

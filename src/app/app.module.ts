@@ -29,6 +29,8 @@ import { UserHelperComponent } from './autentication-area/user-helper/user-helpe
 import { HistorySpyDirective } from './_directives/history-spy.directive';
 import { FIREBASE } from './_utils/constants';
 import { AcessPanelComponent } from './autentication-area/acess-panel/acess-panel.component';
+import { ChangePasswordComponent } from './autentication-area/change-password/change-password.component';
+import { NotConfirmedComponent } from './autentication-area/not-confirmed/not-confirmed.component';
 
 
 
@@ -48,7 +50,9 @@ import { AcessPanelComponent } from './autentication-area/acess-panel/acess-pane
     RecoveryPasswordComponent,
     UserHelperComponent,
     HistorySpyDirective,
-    AcessPanelComponent
+    AcessPanelComponent,
+    ChangePasswordComponent,
+    NotConfirmedComponent
   ],
   imports: [
     BrowserModule,

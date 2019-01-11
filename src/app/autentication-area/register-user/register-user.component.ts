@@ -8,7 +8,6 @@ import { REGEX } from 'src/app/_utils/constants';
 import { CustomValidators } from 'src/app/_utils/validators';
 import { ErrorService } from 'src/app/_services/error.service';
 import { SnackBarService } from 'src/app/_services/snack-bar.service';
-import { Router } from '@angular/router';
 
 
 @Component({
