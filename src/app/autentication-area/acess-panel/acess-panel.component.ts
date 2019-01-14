@@ -15,7 +15,7 @@ export class AcessPanelComponent implements OnInit {
 
   ngOnInit() {
     this.userPanel = {
-      firstTitle: 'CADASTRAR'
+      firstTitle: 'TITULO RELATIVO'
     }
   }
 

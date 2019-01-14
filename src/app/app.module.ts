@@ -25,7 +25,6 @@ import { environment } from 'src/environments/environment';
 import { ParallaxComponent } from './parallax/parallax.component';
 import { ModalComponent } from './modal/modal.component';
 import { RecoveryPasswordComponent } from './autentication-area/recovery-password/recovery-password.component';
-import { UserHelperComponent } from './autentication-area/user-helper/user-helper.component';
 import { HistorySpyDirective } from './_directives/history-spy.directive';
 import { FIREBASE } from './_utils/constants';
 import { AcessPanelComponent } from './autentication-area/acess-panel/acess-panel.component';
@@ -48,7 +47,6 @@ import { NotConfirmedComponent } from './autentication-area/not-confirmed/not-co
     ParallaxComponent,
     ModalComponent,
     RecoveryPasswordComponent,
-    UserHelperComponent,
     HistorySpyDirective,
     AcessPanelComponent,
     ChangePasswordComponent,

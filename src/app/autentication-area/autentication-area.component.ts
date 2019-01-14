@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 import { UserHelperService } from '../_services/user-helper.service';
 import { Subscription } from 'rxjs';
-import { UserHelperComponent } from './user-helper/user-helper.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NavigationService } from '../_services/navigation.service';
 import { PATHS, HELPERTEXTS } from '../_utils/constants';
+import { AcessPanelComponent } from './acess-panel/acess-panel.component';
 
 
 @Component({
@@ -14,7 +14,6 @@ import { PATHS, HELPERTEXTS } from '../_utils/constants';
 })
 export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewInit {
   public formPanelTransformState: string = 'criado';
-  @ViewChild(UserHelperComponent) helperComponent: UserHelperComponent;
   public showRegisterFormPanel: boolean;
   public showRecoveryFormPanel: boolean;
   public showLoginFormPanel: boolean;
@@ -32,13 +31,12 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewI
 
   constructor(
     private userHelper: UserHelperService,
-    private loader: NgxSpinnerService,
     private navigator: NavigationService
   ) { }
 
   ngOnInit() {
     this.watchParamsInUrl();
-    this.userHelper.$emailChangeIsDisable.subscribe((resp)=>{
+    this.userHelper.$emailChangeIsDisable.subscribe((resp) => {
       this.emailChangeIsDisable = resp;
     })
     this.checkTypeOfResendEmail();
@@ -49,23 +47,27 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewI
     this.formValidSubscription && this.formValidSubscription.unsubscribe();
   }
 
-  ngAfterViewInit(): void{
-    this.formValidSubscription = this.userHelper.$validForm.subscribe((value)=>{
+  ngAfterViewInit(): void {
+    this.formValidSubscription = this.userHelper.$validForm.subscribe((value) => {
       this.formValid = value;
     })
   }
 
-  private watchParamsInUrl(): void{
-    this.paramsSubscription = this.userHelper.$params.subscribe((params)=>{
-      params ? this.showFormPanel('user-helper') : this.showFormPanel('login');
+  private watchParamsInUrl(): void {
+    this.paramsSubscription = this.userHelper.$params.subscribe((params) => {
+      params ? this.showFormPanel(this.getLinkMode()) : this.showFormPanel('login');
     })
   }
 
-  public applyActionCode(): void{
+  public applyActionCode(): void {
     this.userHelper.applyCode()
-      .then(()=>{
+      .then(() => {
         this.navigator.navigateToRoute(PATHS.areaDoUsuario);
       })
+  }
+
+  private getLinkMode(): string{
+    return this.userHelper.linkMode;
   }
 
   public showFormPanel(evento: string): void {
@@ -74,7 +76,11 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewI
         this.showRegisterFormPanel = true;
         this.showLoginFormPanel = false;
         break;
-        case 'not-confirmed':
+      case 'resetPassword':
+        this.showChangePwdFormPanel = true;
+        this.showLoginFormPanel = this.showNotCofirmedFormPanel = false;
+        break;
+      case 'verifyEmail':
         this.showNotCofirmedFormPanel = true;
         this.showLoginFormPanel = false;
         break;
@@ -89,34 +95,26 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewI
     }
   }
 
-  public changePassword(): void{
-    this.loader.show();
-    this.userHelper.sendNewPasswordToFirebase(this.helperComponent.getNewPassword())
-      .then((err)=>{
-        this.loader.hide();
-        //!err &&
-      })
-  }
 
-  public checkTypeOfResendEmail(): void{
+  public checkTypeOfResendEmail(): void {
     this.urlMode = this.getParmMode();
-    if(this.urlMode && this.urlMode === 'verifyEmail'){
+    if (this.urlMode && this.urlMode === 'verifyEmail') {
       this.btnMsg = 'Entrar'
       this.helperMsg = HELPERTEXTS.loginAlert;
-    }else if(this.urlMode && this.urlMode === 'resetPassword'){
+    } else if (this.urlMode && this.urlMode === 'resetPassword') {
       this.btnMsg = 'Voltar e reenviar'
       this.helperMsg = HELPERTEXTS.resetAlert;
     }
     this.showBodyMsg = true;
   }
 
-  private getParmMode(): string{
-    if(this.userHelper.$params.value){
+  private getParmMode(): string {
+    if (this.userHelper.$params.value) {
       return this.userHelper.$params.value.mode;
     }
   }
 
-  public changePanelAndClearUrl(type: string): void{
+  public changePanelAndClearUrl(type: string): void {
     this.navigator.navigateToRoute(PATHS.areaDeAutenticacao);
     this.showFormPanel(type);
   }

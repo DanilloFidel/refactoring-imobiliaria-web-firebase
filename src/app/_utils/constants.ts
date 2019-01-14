@@ -64,7 +64,8 @@ export const queryParams = {
 export const HELPERTEXTS = {
   loginAlert : 'Efetue login para reenviar um novo email de confirmação',
   resetAlert: 'Retorne ao painel para recuperar sua senha',
-  emailConfirmedAlert: 'Seu email foi confirmado, você ja pode efetuar login'
+  emailConfirmedAlert: 'Seu email foi confirmado, você ja pode efetuar login',
+  emailNotConfirmAlert: 'Esta conta está pendente de confirmação'
 }
 
 export const FIREBASE = {

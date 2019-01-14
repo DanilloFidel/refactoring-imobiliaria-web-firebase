@@ -1,22 +1,7 @@
 @import '../../../styles.less';
 
-.panel{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: #F8F8F8;
-  border-radius: 6px;
-  box-shadow: @shadow;
-  @media @smallDevices{
-    margin: 2% 5%;
-  }
-  @media @mediumDevices{
-    margin: 5% 10%;
-  }
-  @media @largeDevices{
-    margin: 5% 20%;
-  }
-  &-form{
+
+  .panel-form{
     display: flex;
     flex-direction: column;
     padding: 8%;
@@ -38,13 +23,5 @@
       cursor: pointer;
     }
   }
-  .titles{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    margin-top: 5%;
-    &-register{
-      border-bottom: 3px solid red
-    }
-  }
-}
+
+

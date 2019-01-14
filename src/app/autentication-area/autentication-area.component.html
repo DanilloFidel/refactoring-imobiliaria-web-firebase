@@ -1,60 +1,17 @@
 <div class="backround">
-  <app-acess-panel *ngIf="showLoginFormPanel" >
+  <app-acess-panel *ngIf="showLoginFormPanel">
     <app-login-user (showFormPanel)="showFormPanel($event)"></app-login-user>
   </app-acess-panel>
   <app-acess-panel *ngIf="showRegisterFormPanel">
     <app-register-user (showFormPanel)="showFormPanel($event)"></app-register-user>
   </app-acess-panel>
   <app-acess-panel *ngIf="showRecoveryFormPanel">
-      <app-recovery-password (showFormPanel)="showFormPanel($event)"></app-recovery-password>
+    <app-recovery-password (showFormPanel)="showFormPanel($event)"></app-recovery-password>
   </app-acess-panel>
   <app-acess-panel *ngIf="showChangePwdFormPanel">
-      <app-change-password (showFormPanel)="showFormPanel($event)"></app-change-password>
+    <app-change-password (showFormPanel)="showFormPanel($event)"></app-change-password>
   </app-acess-panel>
   <app-acess-panel *ngIf="showNotCofirmedFormPanel">
-      <app-not-confirmed (showFormPanel)="showFormPanel($event)"></app-not-confirmed>
+    <app-not-confirmed (showFormPanel)="showFormPanel($event)"></app-not-confirmed>
   </app-acess-panel>
 </div>
-<!--
-  <div *ngIf="showLoginFormPanel">
-    <app-login-user (showFormPanel)="showFormPanel($event)"></app-login-user>
-  </div>
-  <div *ngIf="showRegisterFormPanel">
-    <app-register-user
-      (showFormPanel)="showFormPanel($event)"
-    ></app-register-user>
-  </div>
-  <div *ngIf="showRecoveryFormPanel">
-    <app-recovery-password
-      (showFormPanel)="showFormPanel($event)"
-    ></app-recovery-password>
-  </div>
-  <div *ngIf="showUserFormHelper">
-    <app-user-helper
-      (showFormPanel)="showFormPanel($event)"
-      (changeBodyMsg)="helperMsg = $event"
-      (changeBtnType)="notConfirmedEmail = $event"
-    >
-      <span *ngIf="showBodyMsg">{{ helperMsg }}</span>
-      <button
-        *ngIf="emailChangeIsDisable"
-        mat-raised-button
-        type="button"
-        class="btn-submit"
-        (click)="urlMode === 'verifyEmail' ? changePanelAndClearUrl('login') : changePanelAndClearUrl('recovery')"
-      >
-        {{ btnMsg }}
-      </button>
-      <button
-        *ngIf="!emailChangeIsDisable"
-        mat-raised-button
-        type="button"
-        class="btn-submit"
-        (click)="changePassword()"
-        [disabled]="!formValid"
-      >
-        Alterar
-      </button>
-    </app-user-helper>
-  </div> -->
-

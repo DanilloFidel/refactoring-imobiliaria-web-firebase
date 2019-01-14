@@ -1,19 +1,17 @@
-
-
-  <form class="panel-form" [formGroup]="formulario" (ngSubmit)="formSubmit()">
-    <mat-form-field class="panel-form_input">
-      <input matInput placeholder="Email" formControlName="email">
-      <mat-error *ngIf="formulario.controls['email'].touched">Insira um email</mat-error>
-    </mat-form-field>
-    <mat-form-field class="panel-form_input">
-      <input matInput placeholder="Senha" [type]="passwordHide ? 'password' : 'text'" formControlName="senha">
-      <mat-icon matSuffix (click)="passwordHide = !passwordHide">{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      <mat-error *ngIf="formulario.controls['senha'].touched">Insira sua senha</mat-error>
-    </mat-form-field>
-    <div class="btn-wrapper">
-      <button mat-raised-button class="btn-login" >Entrar</button>
-      <button mat-raised-button class="btn-login" type="button" routerLink="" >Voltar</button>
-      <span class="link-helper" (click)="changeToRecoveryPassword()">esqueçi minha senha</span>
-      <span class="titles-register" (click)="changeToRegisterUserPanel()" >REGISTRAR</span>
-    </div>
-  </form>
+<form class="panel-form" [formGroup]="formulario" (ngSubmit)="formSubmit()">
+  <mat-form-field class="panel-form_input">
+    <input matInput placeholder="Email" formControlName="email">
+    <mat-error *ngIf="formulario.controls['email'].touched">Insira um email</mat-error>
+  </mat-form-field>
+  <mat-form-field class="panel-form_input">
+    <input matInput placeholder="Senha" [type]="passwordHide ? 'password' : 'text'" formControlName="senha">
+    <mat-icon matSuffix (click)="passwordHide = !passwordHide">{{passwordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <mat-error *ngIf="formulario.controls['senha'].touched">Insira sua senha</mat-error>
+  </mat-form-field>
+  <div class="btn-wrapper">
+    <button mat-raised-button class="btn-login">Entrar</button>
+    <button mat-raised-button class="btn-login" type="button" routerLink="">Voltar</button>
+    <span class="link-helper" (click)="changeToRecoveryPassword()">esqueçi minha senha</span>
+    <span class="titles-register" (click)="changeToRegisterUserPanel()">REGISTRAR</span>
+  </div>
+</form>

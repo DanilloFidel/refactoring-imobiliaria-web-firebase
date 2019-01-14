@@ -56,7 +56,7 @@ export class LoginUserComponent implements OnInit {
       this.redirectToLogin();
     })
     .catch((errorMsg) => {
-      !errorMsg && this.showFormPanel.emit('not-confirmed');
+      !errorMsg && this.showFormPanel.emit('verifyEmail');
        //this.openModal();
       errorMsg && this.errorService.checkErrorMsg(errorMsg)
     })
