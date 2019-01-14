@@ -6,6 +6,8 @@ import { ErrorService } from 'src/app/_services/error.service';
 import { NavigationService } from 'src/app/_services/navigation.service';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { ModalComponent } from 'src/app/modal/modal.component';
+import { UserHelperService } from 'src/app/_services/user-helper.service';
+import { HELPERTEXTS } from 'src/app/_utils/constants';
 
 
 @Component({
@@ -26,15 +28,17 @@ export class LoginUserComponent implements OnInit {
     private authService: AuthenticationService,
     private errorService: ErrorService,
     private navigation: NavigationService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userHelper: UserHelperService
   ) { }
 
   ngOnInit() {
     this.createForm();
+    this.userHelper.$helperTexts.next(HELPERTEXTS.login);
   }
 
   public changeToRegisterUserPanel(): void{
-    this.showFormPanel.emit('register')
+    this.showFormPanel.emit('register');
   }
 
   public changeToRecoveryPassword(): void{

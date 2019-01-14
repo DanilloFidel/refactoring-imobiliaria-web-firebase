@@ -4,10 +4,11 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { userFactory } from 'src/app/_utils/userFactory';
 import { User } from 'src/app/_models/user.model';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
-import { REGEX } from 'src/app/_utils/constants';
+import { REGEX, HELPERTEXTS } from 'src/app/_utils/constants';
 import { CustomValidators } from 'src/app/_utils/validators';
 import { ErrorService } from 'src/app/_services/error.service';
 import { SnackBarService } from 'src/app/_services/snack-bar.service';
+import { UserHelperService } from 'src/app/_services/user-helper.service';
 
 
 @Component({
@@ -23,15 +24,18 @@ export class RegisterUserComponent implements OnInit {
   public email = false;
   public formulario: FormGroup;
   public errors: {[key: string]: string} = {};
+
   constructor(
     private authService: AuthenticationService,
     private fb: FormBuilder,
     private errorService: ErrorService,
-    private snackBarService: SnackBarService
+    private snackBarService: SnackBarService,
+    private userHelper: UserHelperService
   ) { }
 
   ngOnInit() {
     this.createForm();
+    this.userHelper.$helperTexts.next(HELPERTEXTS.register);
   }
 
   ngOnDestroy(){

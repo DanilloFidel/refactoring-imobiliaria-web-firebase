@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User } from '../_models/user.model';
+import { UserHelperService } from '../_services/user-helper.service';
 
 
 @Component({
@@ -14,12 +15,14 @@ export class LandingAreaComponent implements OnInit {
   private userCollectionRef: AngularFirestoreCollection<User>;
   constructor(
     private db: AngularFirestore,
-    private fireAuth: AngularFireAuth
+    private fireAuth: AngularFireAuth,
+    private userHelper: UserHelperService
   ) {
     this.userCollectionRef = this.db.collection<User>('usuarios');
   }
 
   ngOnInit() {
+    this.userHelper.$params.next(null);
   }
 
   teste(){

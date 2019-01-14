@@ -20,6 +20,7 @@ export class AuthenticationService implements CanActivate {
   private actionCodeSettings: any;
   private userEmail: string;
 
+
   constructor(
     private spinner: NgxSpinnerService,
     private angularFireAuth: AngularFireAuth,

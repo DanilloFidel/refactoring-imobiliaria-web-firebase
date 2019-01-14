@@ -67,6 +67,7 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewI
   }
 
   private getLinkMode(): string{
+    console.log(this.userHelper.linkMode)
     return this.userHelper.linkMode;
   }
 
@@ -90,7 +91,7 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewI
         break;
       case 'login':
         this.showLoginFormPanel = true;
-        this.showRecoveryFormPanel = this.showNotCofirmedFormPanel = this.showRegisterFormPanel = false;
+        this.showRecoveryFormPanel = this.showNotCofirmedFormPanel = this.showRegisterFormPanel = this.showChangePwdFormPanel = false;
         break;
     }
   }

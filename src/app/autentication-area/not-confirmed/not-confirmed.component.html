@@ -1,10 +1,7 @@
 <div class="body_wrapper">
-    <div class="panel_body">
-        <span>{{bodyMsg}}</span>
-    </div>
     <div class="btn-wrapper">
-      <button mat-raised-button class="btn-login">Enviar email de confirmação</button>
-      <button mat-raised-button class="btn-login" *ngIf="emailValid">Entrar</button>
+      <button mat-raised-button class="btn-login" *ngIf="!linkCodeValid" (click)="sendEmail()" [disabled]="btnSendDisabled">Enviar email de confirmação</button>
+      <button mat-raised-button class="btn-login" *ngIf="linkCodeValid" (click)="validateAcc()">Entrar e confirmar</button>
       <button mat-raised-button class="btn-login" type="button" (click)="logoutUser()">Voltar</button>
     </div>
 </div>

@@ -29,8 +29,7 @@ export const firebaseErrorMenssage = [
 
 export const PATHS = {
   areaDeAutenticacao: 'area-de-autenticacao',
-  areaDoUsuario: 'area-do-usuario'
-
+  areaDoUsuario: './area-do-usuario'
 }
 
 export const prefixStorage = {
@@ -62,10 +61,15 @@ export const queryParams = {
 }
 
 export const HELPERTEXTS = {
+  login: 'ACESSO EXCLUSIVO',
+  recovery: 'RECUPERAR SENHA',
+  register: 'CADASTRE-SE',
   loginAlert : 'Efetue login para reenviar um novo email de confirmação',
+  emailConfirmSend: 'Um link de confirmação foi enviado ao seu email',
   resetAlert: 'Retorne ao painel para recuperar sua senha',
   emailConfirmedAlert: 'Seu email foi confirmado, você ja pode efetuar login',
-  emailNotConfirmAlert: 'Esta conta está pendente de confirmação'
+  emailNotConfirmAlert: 'Esta conta está pendente de confirmação',
+  invalidCodeTitle: 'Seu código expirou'
 }
 
 export const FIREBASE = {

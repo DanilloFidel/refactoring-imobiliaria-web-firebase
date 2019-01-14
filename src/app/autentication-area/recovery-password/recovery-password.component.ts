@@ -9,6 +9,8 @@ import { BANNERENTER } from 'src/app/_animations/animation-banner';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { SnackBarService } from 'src/app/_services/snack-bar.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { UserHelperService } from 'src/app/_services/user-helper.service';
+import { HELPERTEXTS } from 'src/app/_utils/constants';
 
 @Component({
   selector: 'app-recovery-password',
@@ -29,11 +31,13 @@ export class RecoveryPasswordComponent implements OnInit {
     private afs: AngularFireAuth,
     private errorService: ErrorService,
     private snackBarService: SnackBarService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private userHelper: UserHelperService
   ) { }
 
   ngOnInit() {
     this.createForm();
+    this.userHelper.$helperTexts.next(HELPERTEXTS.recovery);
   }
 
   private createForm(){

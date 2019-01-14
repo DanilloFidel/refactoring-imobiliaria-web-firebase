@@ -3,8 +3,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 import isEmpty from 'lodash/isEmpty';
 import { BehaviorSubject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { resetPwdFormTextObj, errorTextObj, emailConfirmedTextObj } from '../_utils/constants';
-import { AuthenticationService } from './authentication.service';
+import { HELPERTEXTS } from '../_utils/constants';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,17 +13,27 @@ import { AuthenticationService } from './authentication.service';
 export class UserHelperService {
   public $params = new BehaviorSubject<Params>(null);
   public $emailChangeIsDisable = new BehaviorSubject<boolean>(true);
-  public textMsg = new BehaviorSubject(resetPwdFormTextObj);
+  public $helperTexts = new BehaviorSubject('titulo');
   public oobCode: string;
   public linkMode: string;
   public recoveryPwdForm: boolean;
   public $validForm = new BehaviorSubject<boolean>(false);
+  public $linkCodeValid = new BehaviorSubject(false);
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private spinner: NgxSpinnerService
   ) {
     this.$params.next(this.getParams());
+    this.checkUrlCodeIsValid()
+      .then(()=>{
+        this.$linkCodeValid.next(true);
+      })
+      .catch((err)=>{
+        this.$helperTexts.next(HELPERTEXTS.invalidCodeTitle)
+        console.log(err);
+      })
   }
 
   private getParams(): any {
@@ -42,43 +53,64 @@ export class UserHelperService {
     return this.afAuth.auth;
   }
 
-  public applyCode(): Promise<any>{
-    return new Promise((resolve,reject)=>{
-      this.getAuth().applyActionCode(this.oobCode)
-        .then(()=>{
+  public applyCode(): Promise<any> {
+    this.spinner.show();
+    return new Promise((resolve, reject) => {
+      if(this.getAuth()){
+        this.getAuth().applyActionCode(this.oobCode)
+        .then(() => {
           resolve();
         })
+      }else{
+        reject();
+      }
+
     })
   }
 
-  public checkUrlCodeIsValid(): Promise<any>{
-    return new Promise((resolve,reject)=>{
+  public checkUrlCodeIsValid(): Promise<any> {
+    return new Promise((resolve, reject) => {
       this.getAuth().checkActionCode(this.oobCode)
-        .then(()=>{
-          this.$emailChangeIsDisable.next(false);
-          this.textMsg.next(emailConfirmedTextObj);
-          this.applyCode();
-          resolve();
+        .then(() => {
+          // this.applyCode();
+          // this.$linkCodeValid.next(true);
+          resolve('funcionou');
         })
-        .catch(()=>{
-          this.$emailChangeIsDisable.next(true);
-          this.recoveryPwdForm = false;
-          this.textMsg.next(errorTextObj);
-          reject();
+        .catch((err) => {
+          reject(err);
         })
     })
   }
 
-  public sendNewPasswordToFirebase(pwd: string): Promise<string>{
-    return new Promise((resolve,reject)=>{
+  public sendNewPasswordToFirebase(pwd: string): Promise<string> {
+    return new Promise((resolve, reject) => {
       this.getAuth().confirmPasswordReset(this.oobCode, pwd)
-        .then(()=>{
+        .then(() => {
           resolve();
         })
-        .catch(()=>{
+        .catch(() => {
           resolve('error');
         })
     })
+  }
+
+  public sendNewConfirmationEmail(): Promise<string> {
+    this.spinner.show();
+    return new Promise((resolve) => {
+      if(this.getAuth().currentUser){
+        this.afAuth.auth.currentUser.sendEmailVerification()
+          .then(() => {
+            resolve();
+          })
+          .catch((err) => {
+            resolve(err);
+          })
+      }else{
+        resolve('not logged');
+      }
+
+    })
+
   }
 
 }
