@@ -13,12 +13,10 @@ import { AuthenticationService } from './authentication.service';
 })
 export class UserHelperService {
   public $params = new BehaviorSubject<Params>(null);
-  public $emailChangeIsDisable = new BehaviorSubject<boolean>(true);
   public $helperTexts = new BehaviorSubject<string>('');
   public oobCode: string;
   public linkMode: string;
   public recoveryPwdForm: boolean;
-  public $validForm = new BehaviorSubject<boolean>(false);
   public $linkCodeValid = new BehaviorSubject(false);
 
   constructor(

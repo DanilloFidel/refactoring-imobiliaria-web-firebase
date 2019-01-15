@@ -36,30 +36,6 @@ export const prefixStorage = {
   userTokenPrefix: '#tk'
 }
 
-export const errorTextObj = {
-  title: 'Ops, seu código expirou',
-  btnMsg: 'Reenviar código',
-  error: true
-}
-
-export const resetPwdFormTextObj = {
-  title: 'REDEFINIR SENHA',
-  btnMsg: 'Alterar',
-  error: false
-}
-
-export const emailConfirmedTextObj = {
-  title: 'CONFIRME SEU EMAIL',
-  btnMsg: 'Entrar',
-  error: false
-}
-
-export const queryParams = {
-  resendLink: {
-    linkenviado: true
-  }
-}
-
 export const HELPERTEXTS = {
   login: 'ACESSO EXCLUSIVO',
   recovery: 'RECUPERAR SENHA',

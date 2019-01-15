@@ -1,13 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { ErrorService } from 'src/app/_services/error.service';
 import { SnackBarService } from 'src/app/_services/snack-bar.service';
 import { CustomValidators } from 'src/app/_utils/validators';
 import { REGEX, PATHS, HELPERTEXTS} from 'src/app/_utils/constants';
 import { NavigationService } from 'src/app/_services/navigation.service';
 import { UserHelperService } from 'src/app/_services/user-helper.service';
-import { Subscription } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({

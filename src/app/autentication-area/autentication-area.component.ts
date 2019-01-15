@@ -1,10 +1,8 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserHelperService } from '../_services/user-helper.service';
 import { Subscription } from 'rxjs';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { NavigationService } from '../_services/navigation.service';
-import { PATHS, HELPERTEXTS } from '../_utils/constants';
-import { AcessPanelComponent } from './acess-panel/acess-panel.component';
+import { PATHS } from '../_utils/constants';
 
 
 @Component({
@@ -12,7 +10,7 @@ import { AcessPanelComponent } from './acess-panel/acess-panel.component';
   templateUrl: './autentication-area.component.html',
   styleUrls: ['./autentication-area.component.less']
 })
-export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewInit {
+export class AutenticationAreaComponent implements OnInit, OnDestroy{
   public formPanelTransformState: string = 'criado';
   public showRegisterFormPanel: boolean;
   public showRecoveryFormPanel: boolean;
@@ -20,11 +18,6 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewI
   public showChangePwdFormPanel: boolean;
   public showNotCofirmedFormPanel: boolean;
   public paramsSubscription: Subscription;
-  public formValidSubscription: Subscription;
-  public formValid: boolean;
-  public emailChangeIsDisable: boolean;
-  public notConfirmedEmail: boolean = true;
-  public btnMsg: string;
   public urlMode: string;
   public helperMsg: string;
   public showBodyMsg: boolean;
@@ -36,21 +29,11 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewI
 
   ngOnInit() {
     this.watchParamsInUrl();
-    this.userHelper.$emailChangeIsDisable.subscribe((resp) => {
-      this.emailChangeIsDisable = resp;
-    })
-    this.checkTypeOfResendEmail();
   }
 
   ngOnDestroy() {
     this.paramsSubscription && this.paramsSubscription.unsubscribe();
-    this.formValidSubscription && this.formValidSubscription.unsubscribe();
-  }
 
-  ngAfterViewInit(): void {
-    this.formValidSubscription = this.userHelper.$validForm.subscribe((value) => {
-      this.formValid = value;
-    })
   }
 
   private watchParamsInUrl(): void {
@@ -67,7 +50,6 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewI
   }
 
   private getLinkMode(): string{
-    console.log(this.userHelper.linkMode)
     return this.userHelper.linkMode;
   }
 
@@ -95,29 +77,4 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewI
         break;
     }
   }
-
-
-  public checkTypeOfResendEmail(): void {
-    this.urlMode = this.getParmMode();
-    if (this.urlMode && this.urlMode === 'verifyEmail') {
-      this.btnMsg = 'Entrar'
-      this.helperMsg = HELPERTEXTS.loginAlert;
-    } else if (this.urlMode && this.urlMode === 'resetPassword') {
-      this.btnMsg = 'Voltar e reenviar'
-      this.helperMsg = HELPERTEXTS.resetAlert;
-    }
-    this.showBodyMsg = true;
-  }
-
-  private getParmMode(): string {
-    if (this.userHelper.$params.value) {
-      return this.userHelper.$params.value.mode;
-    }
-  }
-
-  public changePanelAndClearUrl(type: string): void {
-    this.navigator.navigateToRoute(PATHS.areaDeAutenticacao);
-    this.showFormPanel(type);
-  }
-
 }

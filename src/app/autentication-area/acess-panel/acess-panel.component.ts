@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { BANNERENTER } from 'src/app/_animations/animation-banner';
-import { UserPanel } from 'src/app/_utils/interfaces';
 import { Subscription } from 'rxjs';
 import { UserHelperService } from 'src/app/_services/user-helper.service';
 

@@ -1,10 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { MatDialogRef, MatDialog } from '@angular/material';
+import { MatDialogRef} from '@angular/material';
 import { ModalComponent } from 'src/app/modal/modal.component';
-import { AuthenticationService } from 'src/app/_services/authentication.service';
 import { ErrorService } from 'src/app/_services/error.service';
-import { NavigationService } from 'src/app/_services/navigation.service';
 import { BANNERENTER } from 'src/app/_animations/animation-banner';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { SnackBarService } from 'src/app/_services/snack-bar.service';
