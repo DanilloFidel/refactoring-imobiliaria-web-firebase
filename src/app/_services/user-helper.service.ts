@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { HELPERTEXTS } from '../_utils/constants';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthenticationService } from './authentication.service';
 
 
 @Injectable({
@@ -13,7 +14,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class UserHelperService {
   public $params = new BehaviorSubject<Params>(null);
   public $emailChangeIsDisable = new BehaviorSubject<boolean>(true);
-  public $helperTexts = new BehaviorSubject('titulo');
+  public $helperTexts = new BehaviorSubject<string>('');
   public oobCode: string;
   public linkMode: string;
   public recoveryPwdForm: boolean;
@@ -23,7 +24,8 @@ export class UserHelperService {
   constructor(
     private activatedRoute: ActivatedRoute,
     private afAuth: AngularFireAuth,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private authService: AuthenticationService
   ) {
     this.$params.next(this.getParams());
     this.checkUrlCodeIsValid()
@@ -34,6 +36,7 @@ export class UserHelperService {
         this.$helperTexts.next(HELPERTEXTS.invalidCodeTitle)
         console.log(err);
       })
+      .then(()=>this.spinner.hide())
   }
 
   private getParams(): any {
@@ -59,6 +62,7 @@ export class UserHelperService {
       if(this.getAuth()){
         this.getAuth().applyActionCode(this.oobCode)
         .then(() => {
+          this.authService.setUserToken();
           resolve();
         })
       }else{
@@ -69,11 +73,10 @@ export class UserHelperService {
   }
 
   public checkUrlCodeIsValid(): Promise<any> {
+    this.spinner.show();
     return new Promise((resolve, reject) => {
       this.getAuth().checkActionCode(this.oobCode)
         .then(() => {
-          // this.applyCode();
-          // this.$linkCodeValid.next(true);
           resolve('funcionou');
         })
         .catch((err) => {
@@ -83,13 +86,14 @@ export class UserHelperService {
   }
 
   public sendNewPasswordToFirebase(pwd: string): Promise<string> {
+    this.spinner.show();
     return new Promise((resolve, reject) => {
       this.getAuth().confirmPasswordReset(this.oobCode, pwd)
         .then(() => {
           resolve();
         })
-        .catch(() => {
-          resolve('error');
+        .catch((err) => {
+          reject(err);
         })
     })
   }

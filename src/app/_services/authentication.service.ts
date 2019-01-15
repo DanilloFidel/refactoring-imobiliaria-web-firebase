@@ -85,7 +85,7 @@ export class AuthenticationService implements CanActivate {
     })
   }
 
-  private setUserToken(){
+  public setUserToken(){
     this.angularFireAuth.auth.currentUser.getIdToken()
       .then((token)=>{
         sessionStorage.setItem(prefixStorage.userTokenPrefix, token)
@@ -93,7 +93,7 @@ export class AuthenticationService implements CanActivate {
       .catch( error =>console.log(error))
   }
 
-  private getUserToken(): string{
+  public getUserToken(): string{
     return sessionStorage.getItem(prefixStorage.userTokenPrefix);
   }
 

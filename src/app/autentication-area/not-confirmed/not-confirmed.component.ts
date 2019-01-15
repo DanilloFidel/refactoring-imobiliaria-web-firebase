@@ -27,6 +27,7 @@ export class NotConfirmedComponent implements OnInit {
   ngOnInit() {
     this.userHelper.$helperTexts.next(HELPERTEXTS.emailNotConfirmAlert);
     this.getEmailStatus();
+    console.log(this.userHelper.getAuth())
   }
 
   public logoutUser(): void {
@@ -67,15 +68,16 @@ export class NotConfirmedComponent implements OnInit {
   public validateAcc(): void{
     this.userHelper.applyCode()
       .then(()=>{
-        this.spinner.hide();
         this.navigation.navigateToRoute(PATHS.areaDoUsuario);
       })
       .catch(()=>{
         this.snackBar.openSnackBar('Login expirado', 'Atenção');
           this.returnToLogin();
       })
-
+      .then(()=>this.spinner.hide());
   }
 
 
 }
+-
+'             '

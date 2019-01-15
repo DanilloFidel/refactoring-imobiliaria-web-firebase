@@ -12,16 +12,19 @@ export class HeaderComponent implements OnInit {
   public loggedState: any;
 
   constructor(
-    private afs: AngularFireAuth
-    ) { }
+    private afs: AngularFireAuth,
+    private authService: AuthenticationService
+  ) { }
 
   ngOnInit() {
     this.getLoggedState();
   }
 
-  public getLoggedState(): void{
-    this.afs.auth.onAuthStateChanged((data)=>{
-      this.loggedState = data;
+  public getLoggedState(): void {
+    this.afs.auth.onAuthStateChanged((data) => {
+      if (this.authService.getUserToken()) {
+        this.loggedState = data;
+      }
     })
   }
 

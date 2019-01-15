@@ -4,10 +4,11 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { ErrorService } from 'src/app/_services/error.service';
 import { SnackBarService } from 'src/app/_services/snack-bar.service';
 import { CustomValidators } from 'src/app/_utils/validators';
-import { REGEX, PATHS, resetPwdFormTextObj } from 'src/app/_utils/constants';
+import { REGEX, PATHS, HELPERTEXTS} from 'src/app/_utils/constants';
 import { NavigationService } from 'src/app/_services/navigation.service';
 import { UserHelperService } from 'src/app/_services/user-helper.service';
-import { BackEndFirebaseService } from 'src/app/_services/back-end-firebase.service';
+import { Subscription } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-change-password',
@@ -20,18 +21,27 @@ export class ChangePasswordComponent implements OnInit {
   public formulario: FormGroup;
   public errors: {[key: string]: string} = {};
   public passwordHide: boolean = true;
-  public subtitle = {}
+  public invalidCode: boolean
 
   constructor(
     private fb: FormBuilder,
     private errorService: ErrorService,
-    private bckedService: BackEndFirebaseService,
     private navigation: NavigationService,
-    private userHelper: UserHelperService
+    private userHelper: UserHelperService,
+    private snackBar: SnackBarService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
     this.createForm();
+    this.userHelper.checkUrlCodeIsValid()
+      .then(()=>{
+        this.userHelper.$helperTexts.next(HELPERTEXTS.changePwdTitle);
+      })
+      .catch(()=>{
+        this.invalidCode = true;
+        this.setdDisableForm();
+      })
   }
 
 
@@ -49,20 +59,24 @@ export class ChangePasswordComponent implements OnInit {
     return this.formulario.value.senha;
   }
 
+  public sendNewPassword(): void{
+    this.userHelper.sendNewPasswordToFirebase(this.getNewPassword())
+      .then(()=>{
+        this.snackBar.openSnackBar('Senha alterada, agora você pode efetuar login', 'Ótimo');
+        this.redirectToAnotherPanel('login');
+        this.spinner.hide();
+      })
+  }
+
 
   public setdDisableForm(): void{
     this.formulario.controls.senha.disable();
     this.formulario.controls.confirmarSenha.disable();
   }
 
-
-  public resendEmailLink(): void{
-    this.showFormPanel.emit('recovery');
-  }
-
-  public backToLoginPanel(): void{
-    this.showFormPanel.emit('login');
-    this.navigation.navigateToRoute(PATHS.areaDeAutenticacao);
+  public redirectToAnotherPanel(panelType: string): void{
+    this.showFormPanel.emit(panelType);
+    this.navigation.navigateToRoute(PATHS.areaDeAutenticacao, {});
   }
 
 

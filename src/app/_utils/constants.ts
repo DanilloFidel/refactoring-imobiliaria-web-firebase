@@ -69,7 +69,8 @@ export const HELPERTEXTS = {
   resetAlert: 'Retorne ao painel para recuperar sua senha',
   emailConfirmedAlert: 'Seu email foi confirmado, você ja pode efetuar login',
   emailNotConfirmAlert: 'Esta conta está pendente de confirmação',
-  invalidCodeTitle: 'Seu código expirou'
+  invalidCodeTitle: 'Seu código expirou',
+  changePwdTitle: 'Digite sua nova senha'
 }
 
 export const FIREBASE = {

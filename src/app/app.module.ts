@@ -21,7 +21,6 @@ import { AutenticationAreaComponent } from './autentication-area/autentication-a
 import { RegisterUserComponent } from './autentication-area/register-user/register-user.component';
 import { LoginUserComponent } from './autentication-area/login-user/login-user.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { environment } from 'src/environments/environment';
 import { ParallaxComponent } from './parallax/parallax.component';
 import { ModalComponent } from './modal/modal.component';
 import { RecoveryPasswordComponent } from './autentication-area/recovery-password/recovery-password.component';

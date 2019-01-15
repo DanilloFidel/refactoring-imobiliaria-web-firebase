@@ -87,7 +87,7 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy, AfterViewI
         break;
       case 'recovery':
         this.showRecoveryFormPanel = true;
-        this.showLoginFormPanel = this.showNotCofirmedFormPanel = false;
+        this.showLoginFormPanel = this.showNotCofirmedFormPanel = this.showChangePwdFormPanel= false;
         break;
       case 'login':
         this.showLoginFormPanel = true;
