@@ -1,25 +1,21 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { User } from '../_models/user.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatabaseService {
-/*
+  private itemDoc: AngularFirestoreDocument<User>;
+  $item: Observable<User>;
+
   constructor(
-    private angularFireDb: AngularFirestore
-  ) { }
+    private afs: AngularFirestore
+  ) {
+    this.itemDoc = afs.doc<User>('items/1');
+    this.$item = this.itemDoc.valueChanges();
+   }
 
-  public getUserTypeInFirebase(){
-    this.angularFireDb.
-  }
 }
 
-firebase.database().ref(`usuarios/${btoa(email)}`)
-.once('value')
-.then((snapshot: any)=>{
-  e.nome_usuario = snapshot.val().nome_completo;
-})
-})
-*/
-}

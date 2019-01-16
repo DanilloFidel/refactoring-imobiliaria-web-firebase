@@ -2,11 +2,13 @@ import { ErrorMessage } from "./error-msg";
 
 export const REGEX = {
   email: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-  password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/
+  password: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
+  name: /^(?=.{1,50}$)[a-z]+(?:['_.\s][a-z]+)*$/i
 }
 
 export const formErrorMenssage = [
   new ErrorMessage('nome', 'required', 'Precisamos do seu nome.'),
+  new ErrorMessage('nome', 'pattern', 'Nome inválido.'),
   new ErrorMessage('nome', 'minlength', 'Informe seu nome completo.'),
   new ErrorMessage('nome', 'maxlength', 'Limite máximo de 30 caracteres.'),
   new ErrorMessage('email', 'required', 'Precisamos do seu endereço de email.'),

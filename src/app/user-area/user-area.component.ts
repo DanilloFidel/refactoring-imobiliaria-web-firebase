@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../_services/authentication.service';
 import { NavigationService } from '../_services/navigation.service';
+import { DatabaseService } from '../_services/database.service';
 
 @Component({
   selector: 'app-user-area',
@@ -9,13 +10,24 @@ import { NavigationService } from '../_services/navigation.service';
   styleUrls: ['./user-area.component.less']
 })
 export class UserAreaComponent implements OnInit {
-  public greetings = 'Bom dia, Usuário!'
+  public userName = '';
   constructor(
     private authService: AuthenticationService,
-    private navigation: NavigationService
+    private navigation: NavigationService,
+    private dbService: DatabaseService
   ) { }
 
   ngOnInit() {
+
+  }
+
+  show(){
+    this.dbService.$item.subscribe((a)=>{
+      console.log(a)
+    })
+  }
+
+  public getUserName(): void{
 
   }
 

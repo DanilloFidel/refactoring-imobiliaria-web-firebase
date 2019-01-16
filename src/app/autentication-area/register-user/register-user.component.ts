@@ -44,7 +44,12 @@ export class RegisterUserComponent implements OnInit {
 
   private createForm(){
     this.formulario = this.fb.group({
-      nome: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]),
+      nome: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(50),
+        Validators.pattern(REGEX.name)
+      ]),
       email: new FormControl('', [
         Validators.required,
         Validators.pattern(REGEX.email)
