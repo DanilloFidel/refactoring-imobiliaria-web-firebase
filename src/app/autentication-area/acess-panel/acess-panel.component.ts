@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { BANNERENTER } from 'src/app/_animations/animation-banner';
 import { Subscription } from 'rxjs';
 import { UserHelperService } from 'src/app/_services/user-helper.service';
@@ -7,7 +7,8 @@ import { UserHelperService } from 'src/app/_services/user-helper.service';
   selector: 'app-acess-panel',
   templateUrl: './acess-panel.component.html',
   styleUrls: ['./acess-panel.component.less'],
-  animations: [ BANNERENTER ]
+  animations: [ BANNERENTER ],
+  encapsulation: ViewEncapsulation.None
 })
 export class AcessPanelComponent implements OnInit {
   public formPanelTransformState: string = 'criado';

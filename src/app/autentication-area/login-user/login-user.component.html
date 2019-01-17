@@ -1,4 +1,4 @@
-<span class="subtitle-login">acesse agora nosso painel exclusivo para clientes</span>
+<span class="subtitle-login">acesse nosso painel exclusivo para clientes</span>
 <form class="panel-form" [formGroup]="formulario" (ngSubmit)="formSubmit()">
   <mat-form-field class="panel-form_input">
     <input matInput placeholder="Email" formControlName="email">
@@ -12,7 +12,7 @@
   <div class="btn-wrapper">
     <button mat-raised-button class="btn-login">Entrar</button>
     <button mat-raised-button class="btn-login" type="button" routerLink="">Voltar</button>
-    <span class="link-helper" (click)="changeToRecoveryPassword()">esqueçi minha senha</span>
-    <span class="titles-register" (click)="changeToRegisterUserPanel()">REGISTRAR</span>
+    <span class="link-helper" (click)="changeToRecoveryPassword()">nâo lembro minha senha</span>
+    <span class="title-register" (click)="changeToRegisterUserPanel()">NOVO CADASTRO</span>
   </div>
 </form>

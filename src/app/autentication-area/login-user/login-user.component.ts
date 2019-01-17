@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { BANNERENTER } from 'src/app/_animations/animation-banner';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
@@ -19,6 +19,7 @@ export class LoginUserComponent implements OnInit {
   public formPanelTransformState: string = 'criado';
   public passwordHide: boolean = true;
   public formulario: FormGroup;
+  public color = 'green'
 
   constructor(
     private fb: FormBuilder,

@@ -1,9 +1,13 @@
 @import '../../../styles.less';
 
 button{
-  background-color: @beige-1
+  background-color: @secondary-color
 }
 
+.mat-error{
+  color: @error-red;
+  font-weight: 700;
+}
 
 .panel{
   display: flex;
@@ -30,6 +34,8 @@ button{
     text-align: -webkit-center;
     &-span{
       font-family: @title-font;
+      font-size: larger;
+      color: @secondary-color-bold
     }
     &-register:hover{
       cursor: pointer;

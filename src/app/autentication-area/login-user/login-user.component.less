@@ -3,6 +3,7 @@
 .subtitle-login{
   display: flex;
   justify-content: center;
+  text-align: center;
 }
 
 .panel-form{
@@ -19,9 +20,19 @@
     width: 100%;
     margin: 1% 0
   }
-  .link-helper{
-    margin-top: 10%;
+  .title-register{
+    font-family: @title-font;
+    font-size: larger;
+    color: @secondary-color-bold;
     cursor: pointer;
+  }
+  .link-helper{
+    margin: 5% 0 2%;
+    cursor: pointer;
+    &:hover{
+      color: @secondary-color-bold;
+      border-bottom: 1px solid @secondary-color-bold;
+    }
   }
 }
 
