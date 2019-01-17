@@ -22,7 +22,7 @@ export const firebaseErrorMenssage = [
   new ErrorMessage('', 'auth/network-request-failed', 'Falha de conexão, tente novamente!'),
   new ErrorMessage('', 'auth/weak-password', 'Senha inválida!'),
   new ErrorMessage('', 'auth/invalid-email', 'Digite um email válido'),
-  new ErrorMessage('', 'auth/wrong-password', 'Email ou senha inválida'),
+  new ErrorMessage('', 'auth/wrong-password', 'Email ou senha inválidos'),
   new ErrorMessage('', 'auth/user-not-found', 'Email não encontrado no sistema'),
   new ErrorMessage('', 'auth/email-already-in-use', 'Este email já esta em uso.'),
   new ErrorMessage('', 'auth/expired-action-code', 'O link enviado já expirou!'),
@@ -42,13 +42,20 @@ export const HELPERTEXTS = {
   login: 'ÁREA EXCLUSIVA',
   recovery: 'RECUPERAR SENHA',
   register: 'CADASTRE-SE',
-  loginAlert : 'Efetue login para reenviar um novo email de confirmação',
+  registredSucess: 'Cadastro efetuado com sucesso',
+  loginAlert : 'efetue login para reenviar um novo email de confirmação',
   emailConfirmSend: 'Um link de confirmação foi enviado ao seu email',
+  emailRecoverySend: 'Recupere sua senha através do link que te enviamos',
   resetAlert: 'Retorne ao painel para recuperar sua senha',
+  pwdChangeSucess: 'senha alterada, agora você pode efetuar login',
   emailConfirmedAlert: 'Seu email foi confirmado, você ja pode efetuar login',
   emailNotConfirmAlert: 'Esta conta está pendente de confirmação',
   invalidCodeTitle: 'Seu código expirou',
-  changePwdTitle: 'Digite sua nova senha'
+  changePwdTitle: 'Digite sua nova senha',
+  fail: 'Ops, algo deu errado!',
+  sucess: 'Tudo certo',
+  warning: 'Atenção',
+  expiredLogin: 'sua sessão expirou, efetue login novamente'
 }
 
 export const FIREBASE = {

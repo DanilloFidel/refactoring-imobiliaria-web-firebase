@@ -1,8 +1,11 @@
 // @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
 
+
+//GLOBAL STYLES
+
 body {
   margin: 0;
-  height: 100%;
+  height: 100vh;
   font: 16px "Lato", sans-serif;
 }
 
@@ -10,6 +13,12 @@ body {
   button{
     background-color: @secondary-color;
   }
+}
+
+//POP STYLES
+
+.pop_up{
+  background-color: @secondary-color-bold
 }
 
 /* COLOR  VARIABLES */
@@ -29,7 +38,7 @@ body {
 /* MEASURES VARIABLES */
 @navbar: 80px;
 @padding-content: 20px 10px;
-@padding-form: 10px 10%;
+@padding-panel: 5%;
 @padding-form-register: 10px 3%;
 @margin-mobile: 2%;
 @margin-content: 1% 0;
@@ -41,11 +50,18 @@ body {
 @smallDevices: ~"(max-width: 575.98px)";
 @mediumDevices: ~"(min-width: 575.99px) and (max-width: 767.98px)";
 @largeDevices: ~"(min-width: 767.99px) and (max-width: 991.98px)";
-@extraLargeDevices: ~"(min-width: 991.99px) and (max-width: 1199.98px)";
+@desktop-small: ~"(min-width: 991.99px) and (max-width: 1199.98px)";
+@desktop-medium: ~"(min-width: 1199.99px) and (max-width: 1848.98px)";
+@desktop-large:  ~"(min-width: 1848.99px)";
 
 //FONTS
 
 @title-font: 'Francois One', sans-serif;
+
+//BORDERS
+
+@border-1: 6px;
+
 
 // MIXINS
 
@@ -55,4 +71,13 @@ body {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.panelStyle {
+  display: flex;
+  flex-direction: column;
+}
+
+.resizePadding(@padding, @top-bottom, @rigth-left){
+  padding: calc(@padding + @top-bottom) calc(@padding + @rigth-left)
 }

@@ -1,7 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { MatDialogRef} from '@angular/material';
-import { ModalComponent } from 'src/app/modal/modal.component';
 import { ErrorService } from 'src/app/_services/error.service';
 import { BANNERENTER } from 'src/app/_animations/animation-banner';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -21,8 +19,6 @@ export class RecoveryPasswordComponent implements OnInit {
   public formPanelTransformState: string = 'criado';
   public passwordHide: boolean = true;
   public formulario: FormGroup;
-  public fileNameDialogRef: MatDialogRef<ModalComponent>;
-
 
   constructor(
     private fb: FormBuilder,
@@ -51,7 +47,7 @@ export class RecoveryPasswordComponent implements OnInit {
       .then(()=>{
         this.spinner.hide();
         this.formulario.reset();
-        this.snackBarService.openSnackBar('Recupere sua senha através do link que te enviamos!','Enviado');
+        this.snackBarService.openSnackBar(HELPERTEXTS.sucess, HELPERTEXTS.emailRecoverySend );
         this.changeToLoginPanel();
       })
       .catch((error)=>{

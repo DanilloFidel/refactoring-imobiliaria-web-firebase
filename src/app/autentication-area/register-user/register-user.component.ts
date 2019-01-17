@@ -70,7 +70,7 @@ export class RegisterUserComponent implements OnInit {
     this.authService.registerNewUserInFirebase(this.getDataToCreateNewUser())
     .then(()=>{
       this.formulario.reset();
-      this.snackBarService.openSnackBar('Cadastro efetuado com sucesso!','Parabéns!');
+      this.snackBarService.openSnackBar(HELPERTEXTS.sucess, HELPERTEXTS.registredSucess);
       this.changeToLoginPanel();
     })
     .catch((errorMsg)=>{

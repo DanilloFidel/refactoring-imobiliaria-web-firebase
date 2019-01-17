@@ -22,7 +22,6 @@ import { RegisterUserComponent } from './autentication-area/register-user/regist
 import { LoginUserComponent } from './autentication-area/login-user/login-user.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ParallaxComponent } from './parallax/parallax.component';
-import { ModalComponent } from './modal/modal.component';
 import { RecoveryPasswordComponent } from './autentication-area/recovery-password/recovery-password.component';
 import { HistorySpyDirective } from './_directives/history-spy.directive';
 import { FIREBASE } from './_utils/constants';
@@ -30,6 +29,8 @@ import { AcessPanelComponent } from './autentication-area/acess-panel/acess-pane
 import { ChangePasswordComponent } from './autentication-area/change-password/change-password.component';
 import { NotConfirmedComponent } from './autentication-area/not-confirmed/not-confirmed.component';
 import { MaskDirective } from './_directives/mask.directive';
+import { PopUpComponent } from './_shared-components/pop-up/pop-up.component';
+import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
 
 
 
@@ -45,13 +46,13 @@ import { MaskDirective } from './_directives/mask.directive';
     RegisterUserComponent,
     LoginUserComponent,
     ParallaxComponent,
-    ModalComponent,
     RecoveryPasswordComponent,
     HistorySpyDirective,
     AcessPanelComponent,
     ChangePasswordComponent,
     NotConfirmedComponent,
-    MaskDirective
+    MaskDirective,
+    PopUpComponent
   ],
   imports: [
     BrowserModule,
@@ -67,9 +68,9 @@ import { MaskDirective } from './_directives/mask.directive';
     NgxSpinnerModule,
   ],
   providers: [
-
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
    ],
   bootstrap: [AppComponent],
-  entryComponents: [ModalComponent]
+  entryComponents: [PopUpComponent]
 })
 export class AppModule { }

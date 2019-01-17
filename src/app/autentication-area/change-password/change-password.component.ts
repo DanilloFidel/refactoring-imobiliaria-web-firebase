@@ -60,7 +60,7 @@ export class ChangePasswordComponent implements OnInit {
   public sendNewPassword(): void{
     this.userHelper.sendNewPasswordToFirebase(this.getNewPassword())
       .then(()=>{
-        this.snackBar.openSnackBar('Senha alterada, agora você pode efetuar login', 'Ótimo');
+        this.snackBar.openSnackBar(HELPERTEXTS.sucess, HELPERTEXTS.pwdChangeSucess);
         this.redirectToAnotherPanel('login');
         this.spinner.hide();
       })

@@ -46,7 +46,7 @@ export class NotConfirmedComponent implements OnInit {
     this.userHelper.sendNewConfirmationEmail()
       .then((err) => {
         if (err) {
-          this.snackBar.openSnackBar(HELPERTEXTS.loginAlert, 'Atenção');
+          this.snackBar.openSnackBar(HELPERTEXTS.warning, HELPERTEXTS.loginAlert);
           this.returnToLogin();
         } else {
           this.userHelper.$helperTexts.next(HELPERTEXTS.emailConfirmSend);
@@ -71,7 +71,7 @@ export class NotConfirmedComponent implements OnInit {
         this.navigation.navigateToRoute(PATHS.areaDoUsuario);
       })
       .catch(()=>{
-        this.snackBar.openSnackBar('Login expirado', 'Atenção');
+        this.snackBar.openSnackBar(HELPERTEXTS.warning, HELPERTEXTS.expiredLogin);
           this.returnToLogin();
       })
       .then(()=>this.spinner.hide());

@@ -1,17 +1,28 @@
-<div class="backround">
+<div class="background">
   <app-acess-panel *ngIf="showLoginFormPanel">
-    <app-login-user class="login" (showFormPanel)="showFormPanel($event)"></app-login-user>
+    <app-login-user
+      class="login"
+      (showFormPanel)="showFormPanel($event)"
+    ></app-login-user>
   </app-acess-panel>
   <app-acess-panel *ngIf="showRegisterFormPanel">
-    <app-register-user (showFormPanel)="showFormPanel($event)"></app-register-user>
+    <app-register-user
+      (showFormPanel)="showFormPanel($event)"
+    ></app-register-user>
   </app-acess-panel>
   <app-acess-panel *ngIf="showRecoveryFormPanel">
-    <app-recovery-password (showFormPanel)="showFormPanel($event)"></app-recovery-password>
+    <app-recovery-password
+      (showFormPanel)="showFormPanel($event)"
+    ></app-recovery-password>
   </app-acess-panel>
   <app-acess-panel *ngIf="showChangePwdFormPanel">
-    <app-change-password (showFormPanel)="showFormPanel($event)"></app-change-password>
+    <app-change-password
+      (showFormPanel)="showFormPanel($event)"
+    ></app-change-password>
   </app-acess-panel>
   <app-acess-panel *ngIf="showNotCofirmedFormPanel">
-    <app-not-confirmed (showFormPanel)="showFormPanel($event)"></app-not-confirmed>
+    <app-not-confirmed
+      (showFormPanel)="showFormPanel($event)"
+    ></app-not-confirmed>
   </app-acess-panel>
 </div>
