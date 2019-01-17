@@ -31,6 +31,8 @@ import { NotConfirmedComponent } from './autentication-area/not-confirmed/not-co
 import { MaskDirective } from './_directives/mask.directive';
 import { PopUpComponent } from './_shared-components/pop-up/pop-up.component';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 
@@ -66,6 +68,7 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
     DragDropModule,
     MaterialItensModule,
     NgxSpinnerModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
