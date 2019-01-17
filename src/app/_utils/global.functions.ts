@@ -1,3 +1,3 @@
-export default function noScroll(): void{
-    document.body.style.overflow = "hidden"
+export default function switchScroll(hidden?: string): void{
+    document.body.style.overflow = hidden || "visible"
 }

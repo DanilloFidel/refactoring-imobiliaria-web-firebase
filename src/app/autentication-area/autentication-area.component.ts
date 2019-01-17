@@ -3,7 +3,7 @@ import { UserHelperService } from '../_services/user-helper.service';
 import { Subscription } from 'rxjs';
 import { NavigationService } from '../_services/navigation.service';
 import { PATHS } from '../_utils/constants';
-import noScroll from '../_utils/global.functions';
+import switchScroll from '../_utils/global.functions';
 
 
 
@@ -31,12 +31,13 @@ export class AutenticationAreaComponent implements OnInit, OnDestroy{
 
   ngOnInit() {
     this.watchParamsInUrl();
-    noScroll();
+    switchScroll('hidden');
   }
+
 
   ngOnDestroy() {
     this.paramsSubscription && this.paramsSubscription.unsubscribe();
-
+    switchScroll();
   }
 
   private watchParamsInUrl(): void {
