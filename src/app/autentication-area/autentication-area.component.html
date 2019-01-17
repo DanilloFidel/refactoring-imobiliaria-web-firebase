@@ -1,6 +1,6 @@
 <div class="backround">
   <app-acess-panel *ngIf="showLoginFormPanel">
-    <app-login-user (showFormPanel)="showFormPanel($event)"></app-login-user>
+    <app-login-user class="login" (showFormPanel)="showFormPanel($event)"></app-login-user>
   </app-acess-panel>
   <app-acess-panel *ngIf="showRegisterFormPanel">
     <app-register-user (showFormPanel)="showFormPanel($event)"></app-register-user>

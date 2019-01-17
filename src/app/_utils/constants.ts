@@ -39,7 +39,7 @@ export const prefixStorage = {
 }
 
 export const HELPERTEXTS = {
-  login: 'ACESSO EXCLUSIVO',
+  login: 'ÁREA EXCLUSIVA',
   recovery: 'RECUPERAR SENHA',
   register: 'CADASTRE-SE',
   loginAlert : 'Efetue login para reenviar um novo email de confirmação',

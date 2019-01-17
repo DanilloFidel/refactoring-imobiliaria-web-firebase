@@ -1,20 +1,20 @@
 @import '../../../styles.less';
 
-
+.subtitle-login{
+  display: flex;
+  justify-content: center;
+}
 
 .panel-form{
   display: flex;
   flex-direction: column;
-  padding: 8%;
+  padding: 0 5% 8%;
   &_input{
     margin-top: 4%
   }
 }
 .btn-wrapper{
-  margin-top: 5%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  .btnStyle;
   .btn-login{
     width: 100%;
     margin: 1% 0
@@ -25,17 +25,4 @@
   }
 }
 
-.titles{
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
-  margin-top: 5%;
-  &-login{
-    border-bottom: 3px solid red
-  }
-  &-register:hover{
-    cursor: pointer;
-    border-bottom: 3px solid red
-  }
-}
 
