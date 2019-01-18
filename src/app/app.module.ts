@@ -33,6 +33,7 @@ import { PopUpComponent } from './_shared-components/pop-up/pop-up.component';
 import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 
@@ -58,6 +59,7 @@ import { environment } from '../environments/environment';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,

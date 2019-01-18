@@ -10,6 +10,12 @@
           "/index.html",
           "/*.css",
           "/*.js"
+        ],
+        "urls": [
+          "https://fonts.googleapis.com/css?family=Francois+One",
+          "https://fonts.googleapis.com/icon?family=Material+Icons",
+          "https://cdn.firebase.com/libs/firebaseui/3.5.1/firebaseui.js",
+          "https://cdn.firebase.com/libs/firebaseui/3.5.1/firebaseui.css"
         ]
       }
     }, {
@@ -20,6 +26,20 @@
         "files": [
           "/assets/**"
         ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "frases-chuck",
+      "urls": [
+        "https://api.chucknorris.io/jokes/random"
+      ],
+      "cacheConfig": {
+        "maxSize": 5,
+        "maxAge": "6h",
+        "timeout": "10s",
+        "strategy": "freshness"
       }
     }
   ]
