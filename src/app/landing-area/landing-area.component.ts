@@ -27,14 +27,16 @@ export class LandingAreaComponent implements OnInit {
 
   ngOnInit() {
     this.userHelper.$params.next(null);
+    this.http.get("https://api.chucknorris.io/jokes/random").subscribe((resp)=>{
+      this.frase = JSON.stringify(resp);
+      this.msg = JSON.parse(this.frase)
+      console.log(this.msg)
+    })
 
   }
 
   teste(){
-    this.http.get("https://api.chucknorris.io/jokes/random").subscribe((resp)=>{
-      this.frase = JSON.stringify(resp);
-      this.msg = JSON.parse(this.frase)
-    })
+
   //   /*
   //   let col = this.db.collection('imoveis')
   //   let ref = col.doc('novo')

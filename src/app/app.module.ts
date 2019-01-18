@@ -34,6 +34,9 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireMessagingModule } from 'angularfire2/messaging';
+import { AsyncPipe } from '@angular/common';
 
 
 
@@ -66,6 +69,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     AngularFireModule.initializeApp(FIREBASE),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    AngularFireMessagingModule,
     FormsModule,
     DragDropModule,
     MaterialItensModule,
@@ -73,7 +78,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
+    AsyncPipe
    ],
   bootstrap: [AppComponent],
   entryComponents: [PopUpComponent]
