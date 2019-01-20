@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../_services/authentication.service';
 import { NavigationService } from '../_services/navigation.service';
 import { DatabaseService } from '../_services/database.service';
+import { NotificationService } from '../_services/notification.service';
 
 @Component({
   selector: 'app-user-area',
@@ -11,14 +12,20 @@ import { DatabaseService } from '../_services/database.service';
 })
 export class UserAreaComponent implements OnInit {
   public userName = '';
+  public message;
+
   constructor(
     private authService: AuthenticationService,
     private navigation: NavigationService,
-    private dbService: DatabaseService
+    private dbService: DatabaseService,
+    private messagingService: NotificationService
   ) { }
 
   ngOnInit() {
-
+    var userId = 'abc'
+    this.messagingService.requestPermission(userId)
+    this.messagingService.receiveMessage()
+    this.message = this.messagingService.currentMessage
   }
 
   show(){

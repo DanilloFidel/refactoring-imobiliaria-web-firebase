@@ -30,7 +30,6 @@ export class LandingAreaComponent implements OnInit {
     this.http.get("https://api.chucknorris.io/jokes/random").subscribe((resp)=>{
       this.frase = JSON.stringify(resp);
       this.msg = JSON.parse(this.frase)
-      console.log(this.msg)
     })
 
   }

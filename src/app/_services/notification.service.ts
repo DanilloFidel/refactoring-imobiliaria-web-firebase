@@ -5,28 +5,27 @@ import { AngularFireMessaging } from 'angularfire2/messaging';
 
 import * as firebase from 'firebase';
 
-import { mergeMapTo } from 'rxjs/operators';
 import { take } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs'
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
-  private messaging: firebase.messaging.Messaging;
-  private unsubscribeOnTokenRefresh = () => {};
-  public currentMessage = new BehaviorSubject(null)
-
+  public currentMessage = new BehaviorSubject(null);
 
   constructor(
-    private angularFireDB: AngularFireDatabase,
     private angularFireAuth: AngularFireAuth,
-    private angularFireMessaging: AngularFireMessaging
-  ) {
-    this.angularFireMessaging.messaging.subscribe((_messaging)=>{
-      _messaging.onMessage = _messaging.onMessage.bind(_messaging);
-    })
+    private angularFirestore: AngularFirestore,
+    private angularFireMessaging: AngularFireMessaging) {
+    this.angularFireMessaging.messaging.subscribe(
+      (_messaging) => {
+        _messaging.onMessage = _messaging.onMessage.bind(_messaging);
+        _messaging.onTokenRefresh = _messaging.onTokenRefresh.bind(_messaging);
+      }
+    )
   }
 
   /**
@@ -40,8 +39,8 @@ export class NotificationService {
     this.angularFireAuth.authState.pipe(take(1)).subscribe(
       () => {
         const data = {};
-        data[userId] = token
-        this.angularFireDB.object('fcmTokens/').update(data);
+        data[token] = token
+        this.angularFirestore.collection('fcmTokens/').doc(Date.now().toString()).set(data);
       })
   }
 
@@ -53,7 +52,7 @@ export class NotificationService {
   requestPermission(userId) {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
-        console.log(token);
+        console.log('token liberado: ', token);
         this.updateToken(userId, token);
       },
       (err) => {
