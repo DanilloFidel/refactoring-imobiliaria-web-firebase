@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { NotificationService } from './_services/notification.service';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 
 @Component({
@@ -13,13 +14,12 @@ export class AppComponent implements OnInit{
   items = ['First', 'Second', 'Third', 'Fourth'];
 
   constructor(
-
+    private afs: AngularFirestore
   ){
 
   }
 
   public ngOnInit(): void{
-
 
   }
 

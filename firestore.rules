@@ -5,9 +5,13 @@ service cloud.firestore {
       allow write, update: if request.auth != null;
       allow delete: if request.auth != null && !resource.data.exists();
     }
-    
+
     match /imoveis/{novo=**}{
     	allow read, write: if true;
+    }
+
+      match /fcmTokens/{document=**}{
+    	allow read, write, update: if request.auth != null;
     }
   }
 }

@@ -1,13 +1,12 @@
+import { AUTHKEYFIREBASE } from './../_utils/constants';
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth }     from 'angularfire2/auth';
 import { AngularFireMessaging } from 'angularfire2/messaging';
-
-import * as firebase from 'firebase';
-
 import { take } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs'
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { PATHS, URLS, PAYLOAD } from '../_utils/constants';
 
 
 @Injectable({
@@ -19,7 +18,9 @@ export class NotificationService {
   constructor(
     private angularFireAuth: AngularFireAuth,
     private angularFirestore: AngularFirestore,
-    private angularFireMessaging: AngularFireMessaging) {
+    private angularFireMessaging: AngularFireMessaging,
+    private httpC: HttpClient
+    ) {
     this.angularFireMessaging.messaging.subscribe(
       (_messaging) => {
         _messaging.onMessage = _messaging.onMessage.bind(_messaging);
@@ -53,8 +54,8 @@ export class NotificationService {
   requestPermission() {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
-        console.log('token liberado: ', token);
         this.updateToken(token);
+        this.subscribeUserInTopic(token, 'imoveis');
       },
       (err) => {
         console.error('Unable to get permission to notify.', err);
@@ -71,6 +72,42 @@ export class NotificationService {
         console.log("new message received. ", payload);
         this.currentMessage.next(payload);
       })
+  }
+
+  sendNotification(to = "/topics/imoveis"){
+    let header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `key=${AUTHKEYFIREBASE}`
+    })
+    this.httpC.post( URLS.sendNotification,
+    {
+      "notification": {
+          "title": PAYLOAD.title,
+          "body": PAYLOAD.body,
+          "click_action": PAYLOAD.clickAction,
+          "icon": PAYLOAD.icon
+      },
+      "to": to
+  }, { headers: header}).subscribe( res=> console.log(res))
+  }
+
+  public getSubscribersTokens(): string[]{
+    let tokens = [];
+    this.angularFirestore.collection('fcmTokens').get().subscribe( resp => {
+      resp.forEach( user =>{
+        const userToken = user.data();
+         tokens.push(userToken.value);
+      })
+    })
+    return tokens;
+  }
+
+  public subscribeUserInTopic(token, topic): void{
+    let header = new HttpHeaders({
+      'Authorization': `key=${AUTHKEYFIREBASE}`
+    })
+    this.httpC.post(`${URLS.registerTopic}${token}/rel/topics/${topic}`, {} , { headers: header})
+    .toPromise().then( resp => alert(resp)).catch( err => alert('eer,' + err))
   }
 
 }

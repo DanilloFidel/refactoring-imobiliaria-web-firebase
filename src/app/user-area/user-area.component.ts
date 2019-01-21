@@ -61,4 +61,8 @@ export class UserAreaComponent implements OnInit, OnDestroy {
     return outlet.activatedRouteData.state;
   }
 
+  public send(){
+    //call this method after register a house this.messagingService.sendNotification();
+  }
+
 }
