@@ -18,8 +18,6 @@ export class AuthenticationService implements CanActivate {
   private userCollectionRef: AngularFirestoreCollection<User>;
   private user: any
   private actionCodeSettings: any;
-  private userEmail: string;
-
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -62,6 +60,14 @@ export class AuthenticationService implements CanActivate {
     this.removePasswordFromUser(userRegistred)
     await this.userCollectionRef.doc(`${btoa(userRegistred.email)}`)
       .set(Object.assign({}, userRegistred));
+  }
+
+  public getUserId(): string{
+    return this.angularFireAuth.auth.currentUser.uid;
+  }
+
+  public getUserEmail(): string{
+    return this.angularFireAuth.auth.currentUser.email;
   }
 
   public authenticateUser(email: string, password: string) {

@@ -40,7 +40,7 @@ export class NotificationService {
       () => {
         const data = {};
         data[token] = token
-        this.angularFirestore.collection('fcmTokens/').doc(Date.now().toString()).set(data);
+        this.angularFirestore.collection('fcmTokens/').doc(userId).set(data);
       })
   }
 
