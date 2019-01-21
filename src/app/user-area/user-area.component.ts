@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthenticationService } from '../_services/authentication.service';
 import { NavigationService } from '../_services/navigation.service';
 import { DatabaseService } from '../_services/database.service';
@@ -25,7 +24,7 @@ export class UserAreaComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.setTokenForNotifications();
-    this.getUserName();
+    this.getUserData();
   }
 
   ngOnDestroy(): void{
@@ -38,10 +37,8 @@ export class UserAreaComponent implements OnInit, OnDestroy {
     this.message = this.messagingService.currentMessage
   }
 
-  public getUserName(): void{
-    this.nameSubscription = this.dbService.$name.subscribe( name => {
-      this.userName = name;
-    })
+  public getUserData(): void{
+    this.dbService.getUserData('danillopkt@gmail.com');
   }
 
   public logout(): void{

@@ -6,8 +6,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { CanActivate } from '@angular/router';
 import { NavigationService } from './navigation.service';
 import { prefixStorage } from '../_utils/constants';
-import { FirebaseAuth } from '@angular/fire';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 
 
@@ -18,6 +17,7 @@ export class AuthenticationService implements CanActivate {
   private userCollectionRef: AngularFirestoreCollection<User>;
   private user: any
   private actionCodeSettings: any;
+  public $userEmail = new BehaviorSubject<string>('')
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -62,11 +62,6 @@ export class AuthenticationService implements CanActivate {
       .set(Object.assign({}, userRegistred));
   }
 
-
-  public getUserEmail(): string{
-    return this.angularFireAuth.auth.currentUser.email;
-  }
-
   public authenticateUser(email: string, password: string) {
     this.openLoadingOverlay();
     return new Promise((resolve, reject) => {
@@ -75,6 +70,7 @@ export class AuthenticationService implements CanActivate {
           this.user = resp.user;
           if(this.checkEmailIsVerified(resp.user)){
             this.setUserToken();
+            this.$userEmail.next(resp.user.email)
             resolve();
           }else{
             reject();

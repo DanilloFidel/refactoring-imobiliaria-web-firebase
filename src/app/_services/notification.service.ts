@@ -35,7 +35,7 @@ export class NotificationService {
    * @param userId userId as a key
    * @param token token as a value
    */
-  updateToken(token) {
+  private updateToken(token) {
     // we can change this function to request our backend service
     this.angularFireAuth.authState.pipe(take(1)).subscribe(user =>{
       if(user){
@@ -51,7 +51,7 @@ export class NotificationService {
    *
    *
    */
-  requestPermission() {
+  public requestPermission() {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
         this.updateToken(token);
@@ -66,7 +66,7 @@ export class NotificationService {
   /**
    * hook method when new notification received in foreground
    */
-  receiveMessage() {
+  public receiveMessage() {
     this.angularFireMessaging.messages.subscribe(
       (payload) => {
         console.log("new message received. ", payload);
@@ -74,7 +74,7 @@ export class NotificationService {
       })
   }
 
-  sendNotification(to = "/topics/imoveis"){
+  public sendNotification(to = "/topics/imoveis"){
     let header = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `key=${AUTHKEYFIREBASE}`
@@ -102,12 +102,11 @@ export class NotificationService {
     return tokens;
   }
 
-  public subscribeUserInTopic(token, topic): void{
+  private subscribeUserInTopic(token, topic): void{
     let header = new HttpHeaders({
       'Authorization': `key=${AUTHKEYFIREBASE}`
     })
     this.httpC.post(`${URLS.registerTopic}${token}/rel/topics/${topic}`, {} , { headers: header})
-    .toPromise().then( resp => alert(resp)).catch( err => alert('eer,' + err))
   }
 
 }
