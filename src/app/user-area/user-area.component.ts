@@ -33,13 +33,9 @@ export class UserAreaComponent implements OnInit, OnDestroy {
   }
 
   public setTokenForNotifications(): void{
-    this.messagingService.requestPermission(this.getUserId());
+    this.messagingService.requestPermission();
     this.messagingService.receiveMessage();
     this.message = this.messagingService.currentMessage
-  }
-
-  public getUserId(): string{
-    return this.authService.getUserId()
   }
 
   public getUserName(): void{

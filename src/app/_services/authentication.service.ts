@@ -62,9 +62,6 @@ export class AuthenticationService implements CanActivate {
       .set(Object.assign({}, userRegistred));
   }
 
-  public getUserId(): string{
-    return this.angularFireAuth.auth.currentUser.uid;
-  }
 
   public getUserEmail(): string{
     return this.angularFireAuth.auth.currentUser.email;

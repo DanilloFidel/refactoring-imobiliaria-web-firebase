@@ -34,26 +34,27 @@ export class NotificationService {
    * @param userId userId as a key
    * @param token token as a value
    */
-  updateToken(userId, token) {
+  updateToken(token) {
     // we can change this function to request our backend service
-    this.angularFireAuth.authState.pipe(take(1)).subscribe(
-      () => {
+    this.angularFireAuth.authState.pipe(take(1)).subscribe(user =>{
+      if(user){
         const data = {};
-        data[token] = token
-        this.angularFirestore.collection('fcmTokens/').doc(userId).set(data);
-      })
+        data['value'] = token
+        this.angularFirestore.collection('fcmTokens/').doc(user.uid).set(data);
+      }
+    })
   }
 
   /**
    * request permission for notification from firebase cloud messaging
    *
-   * @param userId userId
+   *
    */
-  requestPermission(userId) {
+  requestPermission() {
     this.angularFireMessaging.requestToken.subscribe(
       (token) => {
         console.log('token liberado: ', token);
-        this.updateToken(userId, token);
+        this.updateToken(token);
       },
       (err) => {
         console.error('Unable to get permission to notify.', err);
