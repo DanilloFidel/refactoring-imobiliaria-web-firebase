@@ -1,5 +1,9 @@
 @import '../../styles.less';
 
+.mat-expansion-indicator::after{
+  display: none!important
+}
+
 .header{
   background-color: @primary-color;
   box-shadow: @shadow;
@@ -26,17 +30,16 @@
   }
   &__options{
     display: flex;
-    width: 30%;
+    width: 40%;
     justify-content: space-around;
     align-items: center;
-    margin-right: 30%;
+    margin-right: 20%;
   }
   &__panel{
     .flexColumn;
     margin-right: 2%;
-    .mat-expansion-panel {
-
-    }
+    display: block;
+    padding: 1em 0;
     .icons{
       padding: 1% 2%;
       display: flex;
