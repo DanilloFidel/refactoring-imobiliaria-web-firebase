@@ -5,20 +5,44 @@
         <img class="header__logo-img" src="../../assets/logo.png" alt="logo futura imoveis">
       </a>
     </div>
+
+    <div class="header__options">
+      <span>Imóveis</span>
+      <span>Corretores</span>
+      <span>Clientes</span>
+      <span>Vendas</span>
+    </div>
+
     <div class="header__panel" *ngIf="!loading">
-      <span>{{userName}}</span>
-      <br>
-      <a (click)="logout()" class="btn-logout">
-        <i class="fas fa-sign-out-alt fa-2x"></i>
-      </a>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <span>{{userName}}</span>
+            </mat-panel-title>
+            <mat-panel-description>
+                <mat-icon style="align-self: center;">account_circle</mat-icon>
+              </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div class="icons">
+            <a (click)="openConfigurations()" class="icon btn-config">
+              <i class="fas fa-cog fa-2x"></i>
+            </a>
+            <a (click)="openFaq()" class="icon btn-faq">
+              <i class="fas fa-question-circle fa-2x"></i>
+            </a>
+            <a (click)="logout()" class="icon btn-logout">
+              <i class="fas fa-sign-out-alt fa-2x"></i>
+            </a>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
     </div>
 
     <div class="header__panel" *ngIf="loading">
-       <img src="../../assets//loading-gif.gif" alt="carregando..." class="header__panel-gif">
+      <img src="../../assets//loading-gif.gif" alt="carregando..." class="header__panel-gif">
     </div>
 
   </div>
-  <button mat-button>favoritos</button>
-  <!-- <button (click)="send()">enviar notificação</button> -->
 </header>
 <router-outlet></router-outlet>

@@ -12,7 +12,8 @@ import {
   MatSnackBarModule,
   DateAdapter,
   MatNativeDateModule,
-  MatProgressBar
+  MatProgressBar,
+  MatExpansionModule
 } from '@angular/material';
 
 
@@ -27,12 +28,14 @@ import {
     MatInputModule,
     MatIconModule,
     MatNativeDateModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatExpansionModule
   ],
   exports: [
     MatSnackBarModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatExpansionModule,
     MatProgressBarModule,
     MatDialogModule,
     MatProgressSpinnerModule,

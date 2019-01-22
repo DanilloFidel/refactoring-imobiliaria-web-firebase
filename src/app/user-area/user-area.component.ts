@@ -18,6 +18,7 @@ export class UserAreaComponent implements OnInit, OnDestroy {
   private nameSubscription: Subscription;
   public loading = true;
 
+
   constructor(
     private authService: AuthenticationService,
     private navigation: NavigationService,
