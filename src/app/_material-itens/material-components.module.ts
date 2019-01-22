@@ -11,7 +11,8 @@ import {
   MatSnackBarContainer,
   MatSnackBarModule,
   DateAdapter,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatProgressBar
 } from '@angular/material';
 
 
@@ -25,7 +26,8 @@ import {
     MatProgressSpinnerModule,
     MatInputModule,
     MatIconModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatProgressBarModule
   ],
   exports: [
     MatSnackBarModule,

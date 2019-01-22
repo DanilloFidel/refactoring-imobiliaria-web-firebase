@@ -5,15 +5,20 @@
         <img class="header__logo-img" src="../../assets/logo.png" alt="logo futura imoveis">
       </a>
     </div>
-    <div class="header__panel">
+    <div class="header__panel" *ngIf="!loading">
       <span>{{userName}}</span>
       <br>
       <a (click)="logout()" class="btn-logout">
         <i class="fas fa-sign-out-alt fa-2x"></i>
       </a>
     </div>
+
+    <div class="header__panel" *ngIf="loading">
+       <img src="../../assets//loading-gif.gif" alt="carregando..." class="header__panel-gif">
+    </div>
+
   </div>
-  <button mat-button routerLink="favoritos">favoritos</button>
+  <button mat-button>favoritos</button>
   <!-- <button (click)="send()">enviar notificação</button> -->
 </header>
 <router-outlet></router-outlet>

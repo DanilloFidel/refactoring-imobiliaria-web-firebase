@@ -9,12 +9,10 @@ import { AuthenticationService } from './authentication.service';
 })
 export class DatabaseService implements OnDestroy{
   private userColRef: AngularFirestoreCollection<User>;
-  public email: string;
-  private userEmailSubscription: Subscription;
+  public $userName = new BehaviorSubject<string>(null);
 
   constructor(
-    private afs: AngularFirestore,
-    private authService: AuthenticationService
+    private afs: AngularFirestore
   ) {
   }
 
@@ -22,11 +20,11 @@ export class DatabaseService implements OnDestroy{
 
   }
 
-  public getUserData(email: string): void{
+  public searchUserInFirestore(email: string): void{
     this.userColRef = this.afs.collection<User>('usuarios')
     this.userColRef.doc(`${btoa(email)}`).get().subscribe(res => {
       if(res.exists){
-
+        this.$userName.next(res.data().nome);
       }
     })
   }

@@ -5,6 +5,7 @@
   box-shadow: @shadow;
   display: flex;
   height: 80px;
+  justify-content: space-between;
   &__logo{
     width: 25%;
     display: flex;
@@ -24,8 +25,14 @@
     }
   }
   &__panel{
+    .flexColumn;
+    margin: 2% 4%;
+    &-gif{
+      width: 5em
+    }
     .btn-logout{
       cursor: pointer;
+      align-self: flex-end;
     }
   }
 }

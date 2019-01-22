@@ -7,6 +7,7 @@ import { ConfigPanelComponent } from './config-panel/config-panel.component';
 import { HousesPanelComponent } from './houses-panel/houses-panel.component';
 import { EmployeePanelComponent } from './employee-panel/employee-panel.component';
 import { FormsComponent } from './forms/forms.component';
+import { MaterialItensModule } from "../_material-itens/material-components.module";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormsComponent } from './forms/forms.component';
   ],
   imports: [
     CommonModule,
-    UserAreaRoutingModule
+    UserAreaRoutingModule,
+    MaterialItensModule
   ],
 })
 export class UserAreaModule{

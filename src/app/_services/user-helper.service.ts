@@ -32,7 +32,6 @@ export class UserHelperService {
       })
       .catch((err)=>{
         this.$helperTexts.next(HELPERTEXTS.invalidCodeTitle)
-        console.log(err);
       })
       .then(()=>this.spinner.hide())
   }
