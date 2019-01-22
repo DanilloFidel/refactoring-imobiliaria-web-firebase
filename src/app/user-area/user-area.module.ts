@@ -8,6 +8,11 @@ import { HousesPanelComponent } from './houses-panel/houses-panel.component';
 import { EmployeePanelComponent } from './employee-panel/employee-panel.component';
 import { FormsComponent } from './forms/forms.component';
 import { MaterialItensModule } from "../_material-itens/material-components.module";
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SearchHouseComponent } from './dashboard/search-house/search-house.component';
+import { SearchEmployeeComponent } from './dashboard/search-employee/search-employee.component';
+import { SearchDataComponent } from './dashboard/search-data/search-data.component';
+import { SearchCustomerComponent } from './dashboard/search-customer/search-customer.component';
 
 
 @NgModule({
@@ -17,7 +22,12 @@ import { MaterialItensModule } from "../_material-itens/material-components.modu
   ConfigPanelComponent,
   HousesPanelComponent,
   EmployeePanelComponent,
-  FormsComponent
+  FormsComponent,
+  DashboardComponent,
+  SearchHouseComponent,
+  SearchEmployeeComponent,
+  SearchDataComponent,
+  SearchCustomerComponent
   ],
   imports: [
     CommonModule,
