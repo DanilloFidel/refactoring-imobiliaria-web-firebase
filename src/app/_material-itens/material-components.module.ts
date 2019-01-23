@@ -13,7 +13,11 @@ import {
   DateAdapter,
   MatNativeDateModule,
   MatProgressBar,
-  MatExpansionModule
+  MatExpansionModule,
+  MatAutocompleteModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatSliderModule
 } from '@angular/material';
 
 
@@ -29,9 +33,17 @@ import {
     MatIconModule,
     MatNativeDateModule,
     MatProgressBarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatSliderModule
   ],
   exports: [
+    MatSliderModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
     MatSnackBarModule,
     MatButtonModule,
     MatCheckboxModule,

@@ -83,8 +83,8 @@ body {
   padding: calc(@padding + @top-bottom) calc(@padding + @rigth-left)
 }
 
-.flexColumn {
+.displayFlex(@direction, @justify: initial) {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: @direction;
+  justify-content: @justify;
 }

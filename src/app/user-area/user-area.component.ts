@@ -5,6 +5,7 @@ import { DatabaseService } from '../_services/database.service';
 import { NotificationService } from '../_services/notification.service';
 import { Subscription } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
+import switchScroll from '../_utils/global.functions';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class UserAreaComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    switchScroll('hidden');
     this.setTokenForNotifications();
     this.authSubscribe()
       .then((email) => [
@@ -44,6 +46,7 @@ export class UserAreaComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.nameSubscription && this.nameSubscription.unsubscribe();
+    switchScroll();
   }
 
   private authSubscribe(): Promise<string> {

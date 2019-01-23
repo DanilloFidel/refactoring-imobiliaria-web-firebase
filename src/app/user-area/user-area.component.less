@@ -1,5 +1,6 @@
 @import '../../styles.less';
 
+
 .mat-expansion-indicator::after{
   display: none!important
 }
@@ -8,7 +9,7 @@
   background-color: @primary-color;
   box-shadow: @shadow;
   display: flex;
-  height: 80px;
+  height: @navbar;
   justify-content: space-between;
   &__logo{
     width: 20%;
@@ -36,7 +37,7 @@
     margin-right: 20%;
   }
   &__panel{
-    .flexColumn;
+    .displayFlex(column);
     margin-right: 2%;
     display: block;
     padding: 1em 0;
@@ -54,3 +55,25 @@
     }
   }
 }
+.main__content{
+  background-image: url('../../assets/home-background2.jpg');
+  height: calc(98vh - @navbar);
+  padding: 1%;
+  overflow: hidden;
+  .displayFlex(row, space-around);
+  align-items: center;
+  &-left{
+    .displayFlex(column);
+    width: 20%;
+    height: 80vh;
+    background-color: bisque;
+    padding: 0 1%;
+  }
+  &-right{
+    z-index: 2;
+    width: 70%;
+    height: 80vh;
+    background-color: cadetblue
+  }
+}
+
