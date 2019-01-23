@@ -7,23 +7,32 @@
 
 app-acess-panel{
   height: calc(80vh - 10%);
-  width: 100vw;
-  padding: @padding-panel;
+  margin-right: 10%;
   @media  @desktop-medium{
-    .resizePadding(@padding-panel, 1%, 25%);
+
   }
   @media @desktop-large{
-    .resizePadding(@padding-panel, 3%, 33%)
+
   }
 }
 
+
 .background{
   background-image: url('../../assets/parallax1.jpg');
-  justify-content: center;
+  justify-content: space-around;
   background-size: cover;
   display: flex;
   height: 100%;
+  padding: 5% 0;
   .login{
     margin-top: 1em;
+  }
+  .side__content{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 80%;
+    border: 1px solid red;
+    text-align: center;
   }
 }

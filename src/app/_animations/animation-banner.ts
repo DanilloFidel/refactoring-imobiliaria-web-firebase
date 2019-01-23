@@ -8,7 +8,7 @@ export const BANNERENTER =
     transition('void => criado', [
       style({
         opacity: 0,
-        transform: 'translate(-50px, 0)'
+        transform: 'translate(50px, 0)'
       }),
       animate('500ms 0s ease-in-out') //duração, delay, aceleração(easein)
     ])
