@@ -15,7 +15,7 @@ import { UserHelperService } from 'src/app/_services/user-helper.service';
   selector: 'app-register-user',
   templateUrl: './register-user.component.html',
   styleUrls: ['./register-user.component.less'],
-  animations: [ BANNERENTER ]
+  animations: [BANNERENTER]
 })
 export class RegisterUserComponent implements OnInit {
   @Output() public showFormPanel: EventEmitter<string> = new EventEmitter<string>()
@@ -23,7 +23,7 @@ export class RegisterUserComponent implements OnInit {
   public passwordHide: boolean = true;
   public email = false;
   public formulario: FormGroup;
-  public errors: {[key: string]: string} = {};
+  public errors: { [key: string]: string } = {};
 
   constructor(
     private authService: AuthenticationService,
@@ -38,11 +38,11 @@ export class RegisterUserComponent implements OnInit {
     this.userHelper.$helperTexts.next(HELPERTEXTS.register);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
 
   }
 
-  private createForm(){
+  private createForm() {
     this.formulario = this.fb.group({
       nome: new FormControl('', [
         Validators.required,
@@ -54,31 +54,31 @@ export class RegisterUserComponent implements OnInit {
         Validators.required,
         Validators.pattern(REGEX.email)
       ]),
-      senha: new FormControl('', [Validators.required, Validators.minLength(6) ,Validators.pattern(REGEX.password) ]),
-      confirmarSenha: new FormControl('',  [CustomValidators.matchPasswordValidator('senha')])
+      senha: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern(REGEX.password)]),
+      confirmarSenha: new FormControl('', [CustomValidators.matchPasswordValidator('senha')])
     });
-    this.formulario.valueChanges.subscribe(()=>{
+    this.formulario.valueChanges.subscribe(() => {
       this.errors = this.errorService.updateErrorMessages(this.formulario);
     })
   }
 
-  public changeToLoginPanel(): void{
+  public changeToLoginPanel(): void {
     this.showFormPanel.emit('login')
   }
 
-  public setNewUserWithService(): void{
+  public setNewUserWithService(): void {
     this.authService.registerNewUserInFirebase(this.getDataToCreateNewUser())
-    .then(()=>{
-      this.formulario.reset();
-      this.snackBarService.openSnackBar(HELPERTEXTS.sucess, HELPERTEXTS.registredSucess);
-      this.changeToLoginPanel();
-    })
-    .catch((errorMsg)=>{
-      this.errorService.checkErrorMsg(errorMsg);
-    })
+      .then(() => {
+        this.formulario.reset();
+        this.snackBarService.openSnackBar(HELPERTEXTS.sucess, HELPERTEXTS.registredSucess);
+        this.changeToLoginPanel();
+      })
+      .catch((errorMsg) => {
+        this.errorService.checkErrorMsg(errorMsg);
+      })
   }
 
-  public getDataToCreateNewUser(): User{
+  public getDataToCreateNewUser(): User {
     return userFactory(this.formulario.value);
   }
 
