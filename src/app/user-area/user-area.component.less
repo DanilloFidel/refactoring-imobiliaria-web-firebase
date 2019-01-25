@@ -1,79 +1,73 @@
-@import '../../styles.less';
+@import "../../styles.less";
 
-
-.mat-expansion-indicator::after{
-  display: none!important
+.mat-expansion-indicator::after {
+  display: none !important;
 }
 
-.header{
-  background-color: @primary-color;
+.header {
+  background-color: @primary-color-1;
   box-shadow: @shadow;
   display: flex;
-  height: @navbar;
+  height: @navbar-h;
   justify-content: space-between;
-  &__logo{
+  &__logo {
     width: 20%;
     display: flex;
     align-items: center;
-    @media @smallDevices{
+    @media @smallDevices {
       width: 40%;
     }
-    &-img{
+    &-img {
       margin-left: 10%;
       width: 50%;
-      @media@smallDevices{
+      @media@smallDevices {
         width: 70%;
       }
-      @media @mediumDevices{
-        width: 80%!important;
+      @media @mediumDevices {
+        width: 80% !important;
       }
     }
   }
-  &__options{
+  &__options {
     display: flex;
     width: 40%;
     justify-content: space-around;
     align-items: center;
     margin-right: 20%;
   }
-  &__panel{
+  &__panel {
     .displayFlex(column);
     margin-right: 2%;
     display: block;
     padding: 1em 0;
-    .icons{
+    .icons {
       padding: 1% 2%;
       display: flex;
       justify-content: space-around;
     }
-    &-gif{
-      width: 5em
+    &-gif {
+      width: 5em;
     }
-    .btn-logout{
+    .btn-logout {
       cursor: pointer;
       align-self: flex-end;
     }
   }
 }
-.main__content{
-  background-image: url('../../assets/home-background2.jpg');
-  height: calc(98vh - @navbar);
-  padding: 1%;
-  overflow: hidden;
+.main__content {
   .displayFlex(row, space-around);
-  align-items: center;
-  &-left{
+  height: calc(100vh - @navbar-h);
+  &-left {
     .displayFlex(column);
-    width: 20%;
-    height: 80vh;
-    background-color: bisque;
+    width: @menu-left-w;
+    background-color: @secondary-color-3;
     padding: 0 1%;
+    z-index: -1;
+    box-shadow: @rigth-shadow
   }
-  &-right{
-    z-index: 2;
-    width: 70%;
-    height: 80vh;
-    background-color: cadetblue
+  &-right {
+    width: calc(100vw - @menu-left-w);
+    background-color: cadetblue;
+    z-index: -2;
   }
 }
-

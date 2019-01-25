@@ -6,38 +6,55 @@
 body {
   margin: 0;
   height: 100vh;
-  font-family: @title-font
-  //font: 16px "Lato", sans-serif;
+  font: 16px "Lato", sans-serif;
 }
 
 .btn-wrapper{
   button{
-    background-color: @secondary-color;
+    background-color: @secondary-color-1;
   }
 }
 
 //POP STYLES
 
 .pop_up{
-  background-color: @secondary-color-bold
+  background-color: @secondary-color-1
 }
 
 /* COLOR  VARIABLES */
+@primary-color-dark: #030306;
+@primary-color-10: #05050B;
+@primary-color-9: #070710;
+@primary-color-8: #090915;
+@primary-color-7: #0B0B1A;
+@primary-color-6: #0D0D1F;
+@primary-color-5: #0F0F24;
+@primary-color-4: #111129;
+@primary-color-3: #13132E;
+@primary-color-2: #151536;
+@primary-color-1: #171738;
+@secondary-color-1: #808092;
+@secondary-color-2: #2C2C4A;
+@secondary-color-3: #41415C;
+@secondary-color-4: #56566E;
+@secondary-color-5: #6B6B80;
+@secondary-color-6: #AAAAB6;
+@secondary-color-7: #BFBFC8;
+@secondary-color-8: #D4D4DA;
+@secondary-color-light: #E9E9EC;
+
+
 @error-red: #e61000;
 @bg-opac: #f8f8f8de;
-@primary-color: rgb(248, 248, 248);
-@secondary-color: #11295042;
-@secondary-color-bold :#0d1a2feb;
 @text-navbar: white;
 
 /* EFFECTS  VARIABLES */
 @shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-@shadow-strong: 1px 5px 18px 3px rgba(0, 0, 0, 0.2),
-  0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
 @shadow-mobile: 2px 2px 0px 0px rgba(100, 121, 143, 0.44);
+@rigth-shadow: 11px 4px 20px 3px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
 /* MEASURES VARIABLES */
-@navbar: 80px;
+@navbar-h: 80px;
 @padding-content: 20px 10px;
 @padding-panel: 5%;
 @padding-form-register: 10px 3%;
@@ -46,6 +63,7 @@ body {
 @margin-user-area: 10px;
 @margin-login: 50px 25%;
 @border: 6px;
+@menu-left-w: 20%;
 
 // MEDIA QUERIES
 @smallDevices: ~"(max-width: 575.98px)";
@@ -67,7 +85,6 @@ body {
 // MIXINS
 
 .btnStyle {
-  //background-color: @secondary-color;
   margin-top: 5%;
   display: flex;
   align-items: center;

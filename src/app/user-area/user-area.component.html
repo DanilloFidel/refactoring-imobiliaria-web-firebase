@@ -2,14 +2,12 @@
   <div class="header">
     <div class="header__logo">
       <a routerLink="">
-        <img class="header__logo-img" src="../../assets/logo.png" alt="logo futura imoveis">
+
       </a>
     </div>
 
     <div class="header__options">
-      <span>Imóveis</span>
-      <span>Corretores</span>
-      <span>Clientes</span>
+      <span>Imóveis</span> <span>Corretores</span> <span>Clientes</span>
       <span>Vendas</span>
     </div>
 
@@ -18,11 +16,11 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <span>{{userName}}</span>
+              <span>{{ userName }}</span>
             </mat-panel-title>
             <mat-panel-description>
-                <mat-icon style="align-self: center;">account_circle</mat-icon>
-              </mat-panel-description>
+              <mat-icon style="align-self: center;">account_circle</mat-icon>
+            </mat-panel-description>
           </mat-expansion-panel-header>
           <div class="icons">
             <a (click)="openConfigurations()" class="icon btn-config">
@@ -40,19 +38,16 @@
     </div>
 
     <div class="header__panel" *ngIf="loading">
-      <img src="../../assets//loading-gif.gif" alt="carregando..." class="header__panel-gif">
+      <img
+        src="../../assets//loading-gif.gif"
+        alt="carregando..."
+        class="header__panel-gif"
+      />
     </div>
-
   </div>
 </header>
 
 <div class="main__content">
-    <app-dashboard class="main__content-left">
-
-    </app-dashboard>
-    <div class="main__content-right">
-      <router-outlet></router-outlet>
-    </div>
+  <app-dashboard class="main__content-left"> </app-dashboard>
+  <div class="main__content-right"><router-outlet></router-outlet></div>
 </div>
-
-
